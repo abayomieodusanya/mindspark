@@ -240,7 +240,18 @@
     </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="js/mentor-manager.js"></script>
+    
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-firestore.js"></script>
+
+    <!-- MindSpark Scripts -->
+    <script src="js/firebase-config.js"></script>
+    <script src="js/firebase-auth.js"></script>
+    <script src="js/firebase-db.js"></script>
+    <script src="js/utils.js"></script>
+    <script src="js/mentor-matching-system.js"></script>
 
     <script>
         let allMentors = [];
@@ -252,20 +263,35 @@
             
             loading.style.display = 'block';
 
-            // Get all mentors from MentorManager
-            allMentors = MentorManager.getAllMentors();
+            try {
+                // Get all available mentors from MentorMatchingSystem
+                allMentors = await MentorMatchingSystem.getAvailableMentors();
 
-            // Populate field filter
-            const fields = [...new Set(allMentors.flatMap(m => m.fields))];
-            fields.forEach(field => {
-                const option = document.createElement('option');
-                option.value = field.toLowerCase();
-                option.textContent = field;
-                fieldFilter.appendChild(option);
-            });
+                // Populate field filter
+                const fields = new Set();
+                allMentors.forEach(mentor => {
+                    if (mentor.fields) {
+                        mentor.fields.forEach(field => fields.add(field));
+                    }
+                });
 
-            // Display mentors
-            displayMentors(allMentors);
+                Array.from(fields).forEach(field => {
+                    const option = document.createElement('option');
+                    option.value = field.toLowerCase();
+                    option.textContent = field;
+                    fieldFilter.appendChild(option);
+                });
+
+                // Display mentors
+                displayMentors(allMentors);
+            } catch (error) {
+                console.error('Error loading mentors:', error);
+                mentorsList.innerHTML = `
+                    <div class="alert alert-danger" style="grid-column: 1/-1;">
+                        Error loading mentors. Please try again later.
+                    </div>
+                `;
+            }
 
             loading.style.display = 'none';
         }
@@ -286,14 +312,16 @@
                     <div class="mentor-card">
                         <div class="mentor-header">
                             <div class="mentor-avatar">
-                                <i class="fas fa-user"></i>
+                                ${mentor.profileImage ? `<img src="${mentor.profileImage}" style="width: 100%; height: 100%; object-fit: cover; border-radius: 50%;">` : '<i class="fas fa-user"></i>'}
                             </div>
                             <div class="mentor-name">${mentor.name}</div>
-                            <div class="mentor-title">${mentor.title}</div>
-                            <div class="mentor-company">@ ${mentor.company}</div>
+                            <div class="mentor-title">${mentor.fields ? mentor.fields[0] : 'Expert'}</div>
+                            <div class="rating">
+                                <i class="fas fa-star"></i> ${mentor.rating || 5}/5 (${mentor.reviews || 0} reviews)
+                            </div>
                         </div>
                         <div class="mentor-body">
-                            <div class="mentor-bio">${mentor.bio}</div>
+                            <div class="mentor-bio">${mentor.bio || 'Experienced professional ready to mentor'}</div>
                             
                             <div class="mentor-info">
                                 <div class="info-item">
@@ -302,21 +330,21 @@
                                 </div>
                                 <div class="info-item">
                                     <span class="info-label">Availability</span>
-                                    <span class="info-value">${mentor.availability.slice(0, 1).toUpperCase() + mentor.availability.slice(1)}</span>
+                                    <span class="info-value">${mentor.availability ? mentor.availability.charAt(0).toUpperCase() + mentor.availability.slice(1) : 'Available'}</span>
                                 </div>
                                 <div class="info-item">
-                                    <span class="info-label">Session Type</span>
-                                    <span class="info-value">${mentor.sessionPreference}</span>
+                                    <span class="info-label">Response Time</span>
+                                    <span class="info-value">${mentor.responseTime || '24 hours'}</span>
                                 </div>
                                 <div class="info-item">
-                                    <span class="info-label">Rate</span>
-                                    <span class="info-value">$${mentor.hourlyRate}/hr</span>
+                                    <span class="info-label">${mentor.hourlyRate ? 'Rate' : 'Price'}</span>
+                                    <span class="info-value">${mentor.hourlyRate ? '$' + mentor.hourlyRate + '/hr' : 'Contact for rates'}</span>
                                 </div>
                             </div>
 
                             <div class="skills-section">
                                 <div class="skills-label">Expertise:</div>
-                                ${mentor.expertise.map(skill => `<span class="skill-tag">${skill}</span>`).join('')}
+                                ${(mentor.expertise || []).slice(0, 5).map(skill => `<span class="skill-tag">${skill}</span>`).join('')}
                             </div>
 
                             <div class="mentor-actions">
@@ -330,26 +358,50 @@
             }
         }
 
-        function requestMentor(mentorId, mentorName) {
-            alert(`Mentorship request sent to ${mentorName}! We'll notify you when they respond.`);
+        async function requestMentor(mentorId, mentorName) {
+            try {
+                const userId = await Utils.getCurrentUserId();
+                
+                if (!userId) {
+                    alert('Please log in to request a mentor');
+                    window.location.href = 'login.html';
+                    return;
+                }
+
+                const message = prompt(`Send a message to ${mentorName}:`, 'I would like to be mentored in...');
+                
+                if (!message) return;
+
+                await MentorMatchingSystem.requestMentorship(mentorId, userId, message);
+                alert(`Mentorship request sent to ${mentorName}! We'll notify you when they respond.`);
+            } catch (error) {
+                console.error('Error requesting mentor:', error);
+                alert('Error sending mentorship request. Please try again.');
+            }
         }
 
         // Search and filter functionality
-        document.getElementById('searchInput').addEventListener('input', filterMentors);
-        document.getElementById('fieldFilter').addEventListener('change', filterMentors);
+        const searchInput = document.getElementById('searchInput');
+        const fieldFilter = document.getElementById('fieldFilter');
 
-        function filterMentors() {
-            const searchTerm = document.getElementById('searchInput').value.toLowerCase();
-            const fieldTerm = document.getElementById('fieldFilter').value.toLowerCase();
+        searchInput.addEventListener('input', filterMentors);
+        fieldFilter.addEventListener('change', filterMentors);
 
-            const filtered = allMentors.filter(mentor => {
-                const matchesSearch = mentor.name.toLowerCase().includes(searchTerm) ||
-                                      mentor.company.toLowerCase().includes(searchTerm) ||
-                                      mentor.expertise.some(e => e.toLowerCase().includes(searchTerm)) ||
-                                      mentor.bio.toLowerCase().includes(searchTerm);
-                const matchesField = !fieldTerm || mentor.fields.some(f => f.toLowerCase() === fieldTerm);
-                return matchesSearch && matchesField;
-            });
+        async function filterMentors() {
+            const searchTerm = searchInput.value.toLowerCase();
+            const fieldTerm = fieldFilter.value.toLowerCase();
+
+            let filtered = allMentors;
+
+            if (searchTerm) {
+                filtered = await MentorMatchingSystem.searchMentors(searchTerm);
+            }
+
+            if (fieldTerm) {
+                filtered = filtered.filter(mentor =>
+                    mentor.fields && mentor.fields.some(f => f.toLowerCase() === fieldTerm)
+                );
+            }
 
             displayMentors(filtered);
         }
