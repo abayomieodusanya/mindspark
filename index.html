@@ -13,7 +13,14 @@
       <link rel="stylesheet" href="css/bootstrap-grid.css">
       <link rel="stylesheet" href="css/bootstrap.css">
       <link rel="stylesheet" href="css/style.css">
-      <link rel="stylesheet" href="responsiveness.css">
+      <link rel="stylesheet" href="css/responsiveness.css">
+      
+      <!-- Firebase SDK -->
+      <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-app.js"></script>
+      <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-auth.js"></script>
+      <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-firestore.js"></script>
+      <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-storage.js"></script>
+      
       <style>
         /* Your CSS code here */
         
@@ -51,22 +58,28 @@
             <ul class="navbar-nav mb-2 mb-lg-0">
              
               <li class="nav-item">
-                <a class="nav-link" href="#">Know yourself</a>
+                <a class="nav-link" href="assessment.html">Take Assessment</a>
               </li>
               
               <li class="nav-item">
-                <a class="nav-link" href="#">Mental Structure</a>
+                <a class="nav-link" href="careers.html">Explore Careers</a>
               </li>
              
               <li class="nav-item">
-                <a class="nav-link" href="#">Career Path</a>
+                <a class="nav-link" href="blog.html">Blog</a>
               </li>
              
               <li class="nav-item">
-                <a class="nav-link" href="#">Ted talks</a>
+                <a class="nav-link" href="videos.html">Videos</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="#">Blog</a>
+                <a class="nav-link" href="mentors.html">Find a Mentor</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="community.html">Community</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="login.html">Sign In</a>
               </li>
             </ul>
           </div>
@@ -82,9 +95,9 @@
             <h1 class="hero__title">Introducing the Revolutionary <br> MindSpark Software</h1>
           </div>
           <p class="hero__subtitle lead animated bounceInLeft">Unleash your full potential and achieve your dreams with MindSpark</p>
-          <a href="#" class="hero__cta_two btn section-scroll btn-md btn-clean">Learn more</a>
+          <a href="blog.html" class="hero__cta_two btn section-scroll btn-md btn-clean">Learn more</a>
           <span class="spacebtn"></span>
-          <a href="#contact-section" class="hero__cta section-scroll btn btn-md btn-clean ">Get started</a>
+          <a href="signup.html" class="hero__cta section-scroll btn btn-md btn-clean ">Get started</a>
         </div>
         </div>
       </div>
@@ -232,6 +245,15 @@
       <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
       <script src="https://use.fontawesome.com/releases/v5.15.3/js/all.js"></script>
       <script src="js/bootstrap.js"></script>
+      
+      <!-- Firebase Configuration & Modules -->
+      <script src="js/firebase-config.js"></script>
+      <script src="js/firebase-auth.js"></script>
+      <script src="js/firebase-db.js"></script>
+      <script src="js/constants.js"></script>
+      <script src="js/utils.js"></script>
+      
+      <!-- App Scripts -->
       <script src="js/app.js"></script>
   </body>
 </html>

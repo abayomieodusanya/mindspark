@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up - MindSpark</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.3/css/all.css">
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        body {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        .auth-container {
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+            overflow: hidden;
+            max-width: 450px;
+            width: 100%;
+        }
+
+        .auth-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px 20px;
+            text-align: center;
+        }
+
+        .auth-header h1 {
+            font-size: 2em;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .auth-header p {
+            margin: 0;
+            font-size: 0.95em;
+            opacity: 0.9;
+        }
+
+        .auth-body {
+            padding: 40px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-control {
+            border: 2px solid #e0e0e0;
+            border-radius: 5px;
+            padding: 12px 15px;
+            transition: border-color 0.3s;
+        }
+
+        .form-control:focus {
+            border-color: #667eea;
+            box-shadow: 0 0 0 0.2rem rgba(102, 126, 234, 0.25);
+        }
+
+        .form-label {
+            color: #333;
+            font-weight: 500;
+            margin-bottom: 8px;
+        }
+
+        .btn-signup {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border: none;
+            color: white;
+            font-weight: 600;
+            padding: 12px;
+            border-radius: 5px;
+            width: 100%;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .btn-signup:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(102, 126, 234, 0.4);
+            color: white;
+        }
+
+        .auth-footer {
+            text-align: center;
+            margin-top: 20px;
+            color: #666;
+        }
+
+        .auth-footer a {
+            color: #667eea;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .auth-footer a:hover {
+            text-decoration: underline;
+        }
+
+        .form-text {
+            font-size: 0.85em;
+            color: #999;
+        }
+
+        .password-strength {
+            margin-top: 10px;
+            height: 4px;
+            background: #e0e0e0;
+            border-radius: 2px;
+            overflow: hidden;
+        }
+
+        .strength-bar {
+            height: 100%;
+            width: 0%;
+            transition: width 0.3s, background-color 0.3s;
+        }
+
+        .alert {
+            margin-bottom: 20px;
+            border-radius: 5px;
+        }
+
+        .loading {
+            display: none;
+        }
+    </style>
+
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-storage.js"></script>
+</head>
+<body>
+    <div class="auth-container">
+        <div class="auth-header">
+            <h1>MindSpark</h1>
+            <p>Join our community of young achievers</p>
+        </div>
+
+        <div class="auth-body">
+            <div id="alertContainer"></div>
+
+            <form id="signupForm">
+                <div class="form-group">
+                    <label for="fullName" class="form-label">Full Name</label>
+                    <input 
+                        type="text" 
+                        class="form-control" 
+                        id="fullName" 
+                        name="fullName"
+                        placeholder="John Doe"
+                        required
+                    >
+                </div>
+
+                <div class="form-group">
+                    <label for="email" class="form-label">Email Address</label>
+                    <input 
+                        type="email" 
+                        class="form-control" 
+                        id="email" 
+                        name="email"
+                        placeholder="you@example.com"
+                        required
+                    >
+                </div>
+
+                <div class="form-group">
+                    <label for="age" class="form-label">Age</label>
+                    <input 
+                        type="number" 
+                        class="form-control" 
+                        id="age" 
+                        name="age"
+                        placeholder="16"
+                        min="10"
+                        max="25"
+                        required
+                    >
+                </div>
+
+                <div class="form-group">
+                    <label for="grade" class="form-label">Grade/Year</label>
+                    <select class="form-control" id="grade" name="grade" required>
+                        <option value="">Select your grade</option>
+                        <option value="Grade 6">Grade 6</option>
+                        <option value="Grade 7">Grade 7</option>
+                        <option value="Grade 8">Grade 8</option>
+                        <option value="Grade 9">Grade 9</option>
+                        <option value="Grade 10">Grade 10</option>
+                        <option value="Grade 11">Grade 11</option>
+                        <option value="Grade 12">Grade 12</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="password" class="form-label">Password</label>
+                    <input 
+                        type="password" 
+                        class="form-control" 
+                        id="password" 
+                        name="password"
+                        placeholder="••••••••"
+                        required
+                    >
+                    <small class="form-text">Min 6 chars, 1 uppercase letter, 1 number</small>
+                    <div class="password-strength">
+                        <div class="strength-bar" id="strengthBar"></div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="confirmPassword" class="form-label">Confirm Password</label>
+                    <input 
+                        type="password" 
+                        class="form-control" 
+                        id="confirmPassword" 
+                        name="confirmPassword"
+                        placeholder="••••••••"
+                        required
+                    >
+                </div>
+
+                <div class="form-group form-check">
+                    <input 
+                        type="checkbox" 
+                        class="form-check-input" 
+                        id="agreeTerms"
+                        required
+                    >
+                    <label class="form-check-label" for="agreeTerms">
+                        I agree to the <a href="#">Terms and Conditions</a>
+                    </label>
+                </div>
+
+                <button type="submit" class="btn btn-signup">
+                    <span class="btn-text">Create Account</span>
+                    <span class="spinner-border spinner-border-sm loading ms-2" role="status" aria-hidden="true"></span>
+                </button>
+            </form>
+
+            <div class="auth-footer">
+                Already have an account? <a href="login.html">Sign In</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Firebase Configuration & Modules -->
+    <script src="js/firebase-config.js"></script>
+    <script src="js/firebase-auth.js"></script>
+    <script src="js/utils.js"></script>
+
+    <script>
+        // Password strength indicator
+        document.getElementById('password').addEventListener('input', function(e) {
+            const password = e.target.value;
+            const strengthBar = document.getElementById('strengthBar');
+            let strength = 0;
+
+            if (password.length >= 6) strength += 25;
+            if (/[A-Z]/.test(password)) strength += 25;
+            if (/[0-9]/.test(password)) strength += 25;
+            if (/[^a-zA-Z0-9]/.test(password)) strength += 25;
+
+            strengthBar.style.width = strength + '%';
+            
+            if (strength < 50) strengthBar.style.backgroundColor = '#f44336';
+            else if (strength < 75) strengthBar.style.backgroundColor = '#ff9800';
+            else strengthBar.style.backgroundColor = '#4caf50';
+        });
+
+        // Handle form submission
+        document.getElementById('signupForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+
+            const alertContainer = document.getElementById('alertContainer');
+            alertContainer.innerHTML = '';
+
+            const fullName = document.getElementById('fullName').value.trim();
+            const email = document.getElementById('email').value.trim();
+            const age = parseInt(document.getElementById('age').value);
+            const grade = document.getElementById('grade').value;
+            const password = document.getElementById('password').value;
+            const confirmPassword = document.getElementById('confirmPassword').value;
+
+            // Validation
+            if (!fullName) {
+                Utils.showError('Please enter your full name');
+                return;
+            }
+
+            if (!Utils.isValidEmail(email)) {
+                Utils.showError('Please enter a valid email address');
+                return;
+            }
+
+            if (!Utils.isValidPassword(password)) {
+                Utils.showError('Password must be at least 6 characters with 1 uppercase letter and 1 number');
+                return;
+            }
+
+            if (password !== confirmPassword) {
+                Utils.showError('Passwords do not match');
+                return;
+            }
+
+            // Show loading state
+            document.querySelector('.btn-text').style.display = 'none';
+            document.querySelector('.loading').style.display = 'inline-block';
+
+            try {
+                await AuthManager.registerUser(email, password, {
+                    fullName,
+                    age,
+                    grade
+                });
+
+                Utils.showSuccess('Account created successfully! Redirecting...');
+                setTimeout(() => {
+                    Utils.redirectTo('dashboard.html');
+                }, 2000);
+
+            } catch (error) {
+                Utils.showError(error.message);
+                document.querySelector('.btn-text').style.display = 'inline';
+                document.querySelector('.loading').style.display = 'none';
+            }
+        });
+    </script>
+</body>
+</html>

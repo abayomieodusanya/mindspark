@@ -1,0 +1,1114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Career Assessment - MindSpark</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.3/css/all.css">
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        body {
+            background: #f8f9fa;
+            padding-top: 80px;
+        }
+
+        .assessment-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 40px 0;
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .assessment-header h1 {
+            font-size: 2.5em;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .assessment-header p {
+            font-size: 1.1em;
+            opacity: 0.9;
+        }
+
+        .assessment-container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+
+        .assessment-selection {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-bottom: 50px;
+        }
+
+        .assessment-card {
+            background: white;
+            border-radius: 10px;
+            padding: 30px;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+            cursor: pointer;
+            border-top: 4px solid transparent;
+        }
+
+        .assessment-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        .assessment-card.personality {
+            border-top-color: #667eea;
+        }
+
+        .assessment-card.skills {
+            border-top-color: #764ba2;
+        }
+
+        .assessment-card.aptitude {
+            border-top-color: #f44336;
+        }
+
+        .assessment-card i {
+            font-size: 3em;
+            margin-bottom: 15px;
+            display: block;
+        }
+
+        .assessment-card.personality i {
+            color: #667eea;
+        }
+
+        .assessment-card.skills i {
+            color: #764ba2;
+        }
+
+        .assessment-card.aptitude i {
+            color: #f44336;
+        }
+
+        .assessment-card h3 {
+            font-size: 1.5em;
+            margin-bottom: 10px;
+            color: #333;
+        }
+
+        .assessment-card p {
+            color: #666;
+            margin-bottom: 20px;
+        }
+
+        .assessment-card .duration {
+            font-size: 0.9em;
+            color: #999;
+            margin-bottom: 20px;
+        }
+
+        .btn-start {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 10px 25px;
+            border-radius: 5px;
+            transition: all 0.3s;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn-start:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+            color: white;
+        }
+
+        /* Quiz View Styles */
+        .quiz-container {
+            display: none;
+            background: white;
+            border-radius: 10px;
+            padding: 40px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            margin-bottom: 40px;
+        }
+
+        .quiz-container.active {
+            display: block;
+        }
+
+        .quiz-progress {
+            margin-bottom: 30px;
+        }
+
+        .progress-bar {
+            background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+        }
+
+        .question-counter {
+            font-size: 0.9em;
+            color: #666;
+            margin-top: 10px;
+        }
+
+        .question-text {
+            font-size: 1.3em;
+            font-weight: 600;
+            margin-bottom: 30px;
+            color: #333;
+        }
+
+        .question-type {
+            font-size: 0.85em;
+            color: #667eea;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 10px;
+        }
+
+        .options {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+
+        .option {
+            background: #f8f9fa;
+            border: 2px solid #e0e0e0;
+            padding: 15px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .option:hover {
+            border-color: #667eea;
+            background: #f5f7ff;
+        }
+
+        .option.selected {
+            border-color: #667eea;
+            background: #e8ebff;
+        }
+
+        .option input[type="radio"] {
+            cursor: pointer;
+        }
+
+        .quiz-buttons {
+            display: flex;
+            gap: 15px;
+            justify-content: space-between;
+        }
+
+        .btn-prev, .btn-next, .btn-submit {
+            padding: 12px 30px;
+            border: none;
+            border-radius: 5px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .btn-prev {
+            background: #e0e0e0;
+            color: #333;
+        }
+
+        .btn-prev:hover {
+            background: #d0d0d0;
+        }
+
+        .btn-next, .btn-submit {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+
+        .btn-next:hover, .btn-submit:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        }
+
+        .btn-prev:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        /* Results View */
+        .results-container {
+            display: none;
+            background: white;
+            border-radius: 10px;
+            padding: 40px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            margin-bottom: 40px;
+            text-align: center;
+        }
+
+        .results-container.active {
+            display: block;
+        }
+
+        .results-header {
+            margin-bottom: 30px;
+        }
+
+        .results-header h2 {
+            font-size: 2em;
+            margin-bottom: 10px;
+            color: #333;
+        }
+
+        .score-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 20px 40px;
+            border-radius: 10px;
+            font-size: 1.5em;
+            font-weight: bold;
+            margin: 20px 0;
+        }
+
+        .results-content {
+            text-align: left;
+            margin: 30px 0;
+        }
+
+        .result-section {
+            margin-bottom: 25px;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 5px;
+        }
+
+        .result-section h4 {
+            color: #667eea;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+
+        .result-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .result-list li {
+            padding: 8px 0;
+            color: #555;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        .result-list li:last-child {
+            border-bottom: none;
+        }
+
+        .btn-new-assessment {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 12px 30px;
+            border: none;
+            border-radius: 5px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin-right: 10px;
+        }
+
+        .btn-new-assessment:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+            color: white;
+        }
+
+        .btn-dashboard {
+            background: #e0e0e0;
+            color: #333;
+            padding: 12px 30px;
+            border: none;
+            border-radius: 5px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .btn-dashboard:hover {
+            background: #d0d0d0;
+        }
+    </style>
+
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-firestore.js"></script>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">MindSpark</a>
+        </div>
+    </nav>
+
+    <!-- Assessment Header -->
+    <section class="assessment-header">
+        <div class="assessment-container">
+            <h1>Discover Your Path</h1>
+            <p>Take our comprehensive assessment to understand your strengths, weaknesses, and ideal career path</p>
+        </div>
+    </section>
+
+    <!-- Main Container -->
+    <div class="assessment-container">
+        <!-- Assessment Selection View -->
+        <div id="selectionView">
+            <div class="assessment-selection">
+                <!-- Personality Assessment -->
+                <div class="assessment-card personality" onclick="startAssessment('personality')">
+                    <i class="fas fa-user-circle"></i>
+                    <h3>Personality Assessment</h3>
+                    <p>Discover your personality type and understand how you interact with the world</p>
+                    <div class="duration"><i class="fas fa-clock"></i> ~15 minutes</div>
+                    <a href="#" class="btn-start">Start Assessment</a>
+                </div>
+
+                <!-- Skills Assessment -->
+                <div class="assessment-card skills" onclick="startAssessment('skills')">
+                    <i class="fas fa-lightbulb"></i>
+                    <h3>Skills & Interests</h3>
+                    <p>Identify your key skills and interests to match with suitable careers</p>
+                    <div class="duration"><i class="fas fa-clock"></i> ~20 minutes</div>
+                    <a href="#" class="btn-start">Start Assessment</a>
+                </div>
+
+                <!-- Aptitude Assessment -->
+                <div class="assessment-card aptitude" onclick="startAssessment('aptitude')">
+                    <i class="fas fa-brain"></i>
+                    <h3>Aptitude Test</h3>
+                    <p>Evaluate your logical and analytical abilities through focused questions</p>
+                    <div class="duration"><i class="fas fa-clock"></i> ~25 minutes</div>
+                    <a href="#" class="btn-start">Start Assessment</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Quiz View -->
+        <div id="quizView" class="quiz-container">
+            <div class="quiz-progress">
+                <div class="d-flex justify-content-between align-items-center mb-2">
+                    <span>Progress</span>
+                    <span id="questionCounter" class="question-counter">1 of 10</span>
+                </div>
+                <div class="progress">
+                    <div id="progressBar" class="progress-bar" role="progressbar" style="width: 10%"></div>
+                </div>
+            </div>
+
+            <div id="questionType" class="question-type"></div>
+            <h2 id="questionText" class="question-text"></h2>
+
+            <div id="optionsContainer" class="options">
+                <!-- Options will be inserted here -->
+            </div>
+
+            <div class="quiz-buttons">
+                <button id="prevBtn" class="btn-prev" onclick="previousQuestion()" disabled>
+                    <i class="fas fa-arrow-left"></i> Previous
+                </button>
+                <button id="nextBtn" class="btn-next" onclick="nextQuestion()" style="display:none;">
+                    Next <i class="fas fa-arrow-right"></i>
+                </button>
+                <button id="submitBtn" class="btn-submit" onclick="submitAssessment()" style="display:none;">
+                    Submit Assessment
+                </button>
+            </div>
+        </div>
+
+        <!-- Results View -->
+        <div id="resultsView" class="results-container">
+            <div class="results-header">
+                <h2>Assessment Complete!</h2>
+                <p>Here are your detailed results:</p>
+            </div>
+
+            <div class="score-badge" id="scoreDisplay">Score: 0%</div>
+
+            <div class="results-content">
+                <div id="resultsContent">
+                    <!-- Results will be inserted here -->
+                </div>
+            </div>
+
+            <div style="margin-top: 30px;">
+                <button class="btn-new-assessment" onclick="resetAssessment()">
+                    <i class="fas fa-redo"></i> Take Another Assessment
+                </button>
+                <a href="dashboard.html" class="btn-dashboard">
+                    <i class="fas fa-chart-line"></i> View Dashboard
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Navbar at bottom for mobile -->
+    <footer style="background: #f8f9fa; padding: 20px; text-align: center; margin-top: 50px; border-top: 1px solid #e0e0e0;">
+        <a href="index.html" style="margin: 0 10px; text-decoration: none; color: #667eea;">Home</a>
+        <a href="blog.html" style="margin: 0 10px; text-decoration: none; color: #667eea;">Blog</a>
+        <a href="mentors.html" style="margin: 0 10px; text-decoration: none; color: #667eea;">Mentors</a>
+        <a href="community.html" style="margin: 0 10px; text-decoration: none; color: #667eea;">Community</a>
+    </footer>
+
+    <!-- Firebase Configuration & Modules -->
+    <script src="js/firebase-config.js"></script>
+    <script src="js/firebase-auth.js"></script>
+    <script src="js/firebase-db.js"></script>
+    <script src="js/constants.js"></script>
+    <script src="js/utils.js"></script>
+    <script src="js/results-engine.js"></script>
+
+    <script>
+        // Assessment data structure
+        const assessmentQuestions = {
+            personality: [
+                {
+                    question: "In social situations, I tend to:",
+                    type: "Personality",
+                    options: [
+                        "Be outgoing and talkative",
+                        "Be quiet and observant",
+                        "Depend on my mood "
+                    ]
+                },
+                {
+                    question: "When facing a problem, I prefer to:",
+                    type: "Personality",
+                    options: [
+                        "Jump in and tackle it immediately",
+                        "Take time to analyze it carefully",
+                        "Discuss it with others first"
+                    ]
+                },
+                {
+                    question: "I work best:",
+                    type: "Personality",
+                    options: [
+                        "In a team environment",
+                        "Independently",
+                        "Both, depending on the task"
+                    ]
+                },
+                {
+                    question: "When learning something new, I:",
+                    type: "Personality",
+                    options: [
+                        "Prefer hands-on practice",
+                        "Want to understand the theory first",
+                        "Learn by watching others"
+                    ]
+                },
+                {
+                    question: "My ideal future involves:",
+                    type: "Personality",
+                    options: [
+                        "Helping and supporting others",
+                        "Creating or innovating something new",
+                        "Building and achieving goals"
+                    ]
+                },
+                {
+                    question: "Under stress, I typically:",
+                    type: "Personality",
+                    options: [
+                        "Become more determined",
+                        "Need time alone to think",
+                        "Seek support from others"
+                    ]
+                },
+                {
+                    question: "I am most motivated by:",
+                    type: "Personality",
+                    options: [
+                        "Recognition and success",
+                        "Personal growth and learning",
+                        "Making a difference"
+                    ]
+                },
+                {
+                    question: "In groups, I usually:",
+                    type: "Personality",
+                    options: [
+                        "Take the lead",
+                        "Support others' ideas",
+                        "Work quietly in the background"
+                    ]
+                },
+                {
+                    question: "My approach to rules and guidelines is:",
+                    type: "Personality",
+                    options: [
+                        "Follow them closely",
+                        "Question and challenge them",
+                        "Follow them but with flexibility"
+                    ]
+                },
+                {
+                    question: "I feel most fulfilled when:",
+                    type: "Personality",
+                    options: [
+                        "I accomplish something significant",
+                        "I understand something deeply",
+                        "I help someone succeed"
+                    ]
+                }
+            ],
+            skills: [
+                {
+                    question: "Rate your communication skills:",
+                    type: "Skills Rating",
+                    options: [
+                        "Beginner - Still developing",
+                        "Intermediate - Quite comfortable",
+                        "Advanced - Very confident"
+                    ]
+                },
+                {
+                    question: "How strong are your problem-solving abilities?",
+                    type: "Skills Rating",
+                    options: [
+                        "Beginner - Need guidance",
+                        "Intermediate - Can usually figure it out",
+                        "Advanced - Natural problem solver"
+                    ]
+                },
+                {
+                    question: "Your creativity level is:",
+                    type: "Skills Rating",
+                    options: [
+                        "Beginner - More practical than creative",
+                        "Intermediate - Fairly creative",
+                        "Advanced - Very imaginative and innovative"
+                    ]
+                },
+                {
+                    question: "Which interest excites you most?",
+                    type: "Interest",
+                    options: [
+                        "Technology and coding",
+                        "Art and creative expression",
+                        "Business and entrepreneurship"
+                    ]
+                },
+                {
+                    question: "Your leadership potential is:",
+                    type: "Skills Rating",
+                    options: [
+                        "Beginner - Prefer to follow",
+                        "Intermediate - Could lead if needed",
+                        "Advanced - Natural leader"
+                    ]
+                },
+                {
+                    question: "How comfortable are you with data and numbers?",
+                    type: "Skills Rating",
+                    options: [
+                        "Not comfortable - I prefer words",
+                        "Somewhat comfortable",
+                        "Very comfortable - I love analytics"
+                    ]
+                },
+                {
+                    question: "Your teamwork skills are:",
+                    type: "Skills Rating",
+                    options: [
+                        "Beginner - Struggle with collaboration",
+                        "Intermediate - Work well with others",
+                        "Advanced - Excel in team settings"
+                    ]
+                },
+                {
+                    question: "How interested are you in helping others?",
+                    type: "Interest",
+                    options: [
+                        "Not very interested",
+                        "Moderately interested",
+                        "Extremely interested - My passion"
+                    ]
+                },
+                {
+                    question: "Your technical skills level is:",
+                    type: "Skills Rating",
+                    options: [
+                        "Beginner - Learning basics",
+                        "Intermediate - Can work with most tools",
+                        "Advanced - Quick learner with tech"
+                    ]
+                },
+                {
+                    question: "Which field attracts you most?",
+                    type: "Interest",
+                    options: [
+                        "Healthcare and wellness",
+                        "Education and training",
+                        "Engineering and innovation"
+                    ]
+                }
+            ],
+            aptitude: [
+                {
+                    question: "What comes next in the sequence: 2, 4, 8, 16, ?",
+                    type: "Logical Reasoning",
+                    options: [
+                        "20",
+                        "24",
+                        "32"
+                    ]
+                },
+                {
+                    question: "If all roses are flowers and some flowers fade, can we conclude all roses fade?",
+                    type: "Logical Reasoning",
+                    options: [
+                        "Yes, definitely",
+                        "No, not necessarily",
+                        "Cannot determine"
+                    ]
+                },
+                {
+                    question: "A train travels at 60 km/h. How far does it travel in 2.5 hours?",
+                    type: "Mathematical",
+                    options: [
+                        "120 km",
+                        "150 km",
+                        "200 km"
+                    ]
+                },
+                {
+                    question: "What is the next letter: A, C, E, G, ?",
+                    type: "Pattern Recognition",
+                    options: [
+                        "H",
+                        "I",
+                        "J"
+                    ]
+                },
+                {
+                    question: "If 5 people can complete a task in 4 days, how many days for 2 people?",
+                    type: "Mathematical",
+                    options: [
+                        "2 days",
+                        "10 days",
+                        "8 days"
+                    ]
+                },
+                {
+                    question: "Which shape completes the pattern?",
+                    type: "Visual Reasoning",
+                    options: [
+                        "Circle",
+                        "Square",
+                        "Triangle"
+                    ]
+                },
+                {
+                    question: "What is the odd one out: Cat, Dog, Robin, Whale?",
+                    type: "Logical Reasoning",
+                    options: [
+                        "Cat",
+                        "Robin",
+                        "Whale"
+                    ]
+                },
+                {
+                    question: "If X = 3 and Y = 5, what is 2X + 3Y?",
+                    type: "Mathematical",
+                    options: [
+                        "16",
+                        "18",
+                        "21"
+                    ]
+                },
+                {
+                    question: "Complete the analogy: Book is to Author as Painting is to:",
+                    type: "Analytical",
+                    options: [
+                        "Canvas",
+                        "Artist",
+                        "Gallery"
+                    ]
+                },
+                {
+                    question: "What percentage is 25 out of 200?",
+                    type: "Mathematical",
+                    options: [
+                        "10%",
+                        "12.5%",
+                        "15%"
+                    ]
+                }
+            ]
+        };
+
+        // Global state
+        let currentAssessmentType = null;
+        let currentQuestionIndex = 0;
+        let userAnswers = [];
+        let currentQuestions = [];
+
+        // Start assessment
+        function startAssessment(type) {
+            currentAssessmentType = type;
+            currentQuestionIndex = 0;
+            userAnswers = new Array(assessmentQuestions[type].length).fill(null);
+            currentQuestions = assessmentQuestions[type];
+
+            document.getElementById('selectionView').style.display = 'none';
+            document.getElementById('quizView').classList.add('active');
+
+            showQuestion();
+        }
+
+        // Show current question
+        function showQuestion() {
+            const question = currentQuestions[currentQuestionIndex];
+            const progress = ((currentQuestionIndex + 1) / currentQuestions.length) * 100;
+
+            document.getElementById('questionType').textContent = question.type;
+            document.getElementById('questionText').textContent = question.question;
+            document.getElementById('questionCounter').textContent = `${currentQuestionIndex + 1} of ${currentQuestions.length}`;
+            document.getElementById('progressBar').style.width = progress + '%';
+
+            // Render options
+            const optionsContainer = document.getElementById('optionsContainer');
+            optionsContainer.innerHTML = '';
+
+            question.options.forEach((option, index) => {
+                const optionDiv = document.createElement('label');
+                optionDiv.className = 'option' + (userAnswers[currentQuestionIndex] === index ? ' selected' : '');
+                optionDiv.innerHTML = `
+                    <input type="radio" name="answer" value="${index}" ${userAnswers[currentQuestionIndex] === index ? 'checked' : ''}>
+                    <span>${option}</span>
+                `;
+                optionDiv.addEventListener('change', () => selectOption(index, optionDiv));
+                optionsContainer.appendChild(optionDiv);
+            });
+
+            // Update button states
+            document.getElementById('prevBtn').disabled = currentQuestionIndex === 0;
+            
+            if (currentQuestionIndex === currentQuestions.length - 1) {
+                document.getElementById('nextBtn').style.display = 'none';
+                document.getElementById('submitBtn').style.display = 'inline-block';
+            } else {
+                document.getElementById('nextBtn').style.display = 'inline-block';
+                document.getElementById('submitBtn').style.display = 'none';
+            }
+        }
+
+        // Select option
+        function selectOption(index, element) {
+            document.querySelectorAll('.option').forEach(opt => opt.classList.remove('selected'));
+            element.classList.add('selected');
+            userAnswers[currentQuestionIndex] = index;
+        }
+
+        // Navigate questions
+        function nextQuestion() {
+            if (currentQuestionIndex < currentQuestions.length - 1) {
+                currentQuestionIndex++;
+                showQuestion();
+            }
+        }
+
+        function previousQuestion() {
+            if (currentQuestionIndex > 0) {
+                currentQuestionIndex--;
+                showQuestion();
+            }
+        }
+
+        // Submit assessment
+        async function submitAssessment() {
+            // Check if all questions are answered
+            if (userAnswers.includes(null)) {
+                Utils.showError('Please answer all questions before submitting');
+                return;
+            }
+
+            try {
+                // Show loading state
+                const submitBtn = document.getElementById('submitBtn');
+                const originalText = submitBtn.innerHTML;
+                submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Processing...';
+                submitBtn.disabled = true;
+
+                // Get current user
+                const userId = await Utils.getCurrentUserId();
+
+                // Process results using the advanced ResultsEngine
+                const resultsEngine = new ResultsEngine();
+                const processedResults = await resultsEngine.processResults(currentAssessmentType, userAnswers, userId);
+
+                // Compare with previous assessments if user is logged in
+                let comparisons = [];
+                if (userId) {
+                    comparisons = await resultsEngine.compareWithPrevious(userId, processedResults);
+                }
+
+                // Save results to Firebase if user is logged in
+                if (userId) {
+                    try {
+                        await DatabaseManager.saveAssessmentResults(userId, {
+                            type: currentAssessmentType,
+                            scores: processedResults.scores,
+                            analysis: processedResults.analysis,
+                            careerMatches: processedResults.careerMatches,
+                            recommendations: processedResults.recommendations,
+                            insights: processedResults.insights,
+                            timestamp: processedResults.timestamp
+                        });
+                    } catch (error) {
+                        console.error('Error saving results:', error);
+                        Utils.showError('Results processed but could not be saved. Please try again.');
+                    }
+                }
+
+                // Display results
+                showAdvancedResults(processedResults, comparisons);
+
+            } catch (error) {
+                console.error('Error processing assessment:', error);
+                Utils.showError('Error processing your assessment. Please try again.');
+            } finally {
+                // Reset button state
+                const submitBtn = document.getElementById('submitBtn');
+                submitBtn.innerHTML = 'Submit Assessment';
+                submitBtn.disabled = false;
+            }
+        }
+
+
+
+        // Show advanced results with detailed analysis
+        function showAdvancedResults(results, comparisons = []) {
+            document.getElementById('quizView').classList.remove('active');
+            document.getElementById('resultsView').classList.add('active');
+
+            // Update score display
+            const scoreDisplay = document.getElementById('scoreDisplay');
+            let scoreText = `Score: ${results.scores.percentage}%`;
+
+            if (results.analysis.personalityType) {
+                scoreText = `Personality: ${results.analysis.personalityType} | Score: ${results.scores.percentage}%`;
+            } else if (results.analysis.topSkills && results.analysis.topSkills.length > 0) {
+                const topSkill = results.analysis.topSkills[0];
+                scoreText = `Top Skill: ${topSkill[0]} | Score: ${results.scores.percentage}%`;
+            }
+
+            scoreDisplay.textContent = scoreText;
+
+            // Build comprehensive results HTML
+            let resultsHTML = '';
+
+            // Analysis section
+            resultsHTML += '<div class="result-section">';
+            resultsHTML += '<h4><i class="fas fa-chart-pie"></i> Detailed Analysis</h4>';
+
+            if (results.analysis.type === 'personality') {
+                resultsHTML += '<div class="mb-3"><strong>Personality Traits:</strong></div>';
+                resultsHTML += '<div class="row">';
+
+                Object.entries(results.analysis.traits).forEach(([trait, score]) => {
+                    const traitName = trait.charAt(0).toUpperCase() + trait.slice(1);
+                    const percentage = score;
+                    resultsHTML += `
+                        <div class="col-md-6 mb-2">
+                            <div class="d-flex justify-content-between">
+                                <span>${traitName}</span>
+                                <span>${percentage}%</span>
+                            </div>
+                            <div class="progress" style="height: 8px;">
+                                <div class="progress-bar" style="width: ${percentage}%"></div>
+                            </div>
+                        </div>
+                    `;
+                });
+
+                resultsHTML += '</div>';
+
+                if (results.analysis.dominantTraits.length > 0) {
+                    resultsHTML += '<div class="mt-3"><strong>Dominant Traits:</strong> ';
+                    resultsHTML += results.analysis.dominantTraits.map(t => t.name).join(', ');
+                    resultsHTML += '</div>';
+                }
+            }
+
+            if (results.analysis.type === 'skills') {
+                resultsHTML += '<div class="mb-3"><strong>Skill Assessment:</strong></div>';
+
+                results.analysis.topSkills.forEach(([skill, score]) => {
+                    resultsHTML += `
+                        <div class="mb-2">
+                            <div class="d-flex justify-content-between">
+                                <span>${skill.charAt(0).toUpperCase() + skill.slice(1)}</span>
+                                <span>${score}%</span>
+                            </div>
+                            <div class="progress" style="height: 8px;">
+                                <div class="progress-bar bg-success" style="width: ${score}%"></div>
+                            </div>
+                        </div>
+                    `;
+                });
+
+                if (results.analysis.skillGaps.length > 0) {
+                    resultsHTML += '<div class="mt-3"><strong>Areas for Improvement:</strong></div>';
+                    resultsHTML += '<ul class="result-list">';
+                    results.analysis.skillGaps.forEach(gap => {
+                        resultsHTML += `<li>${gap.skill} (${gap.currentLevel}%) - ${gap.recommendedActions[0]}</li>`;
+                    });
+                    resultsHTML += '</ul>';
+                }
+            }
+
+            if (results.analysis.type === 'aptitude') {
+                resultsHTML += '<div class="mb-3"><strong>Aptitude Strengths:</strong></div>';
+
+                results.analysis.strengths.forEach(strength => {
+                    resultsHTML += `
+                        <div class="mb-2">
+                            <div class="d-flex justify-content-between">
+                                <span>${strength.area} Reasoning</span>
+                                <span>${strength.score}%</span>
+                            </div>
+                            <div class="progress" style="height: 8px;">
+                                <div class="progress-bar bg-info" style="width: ${strength.score}%"></div>
+                            </div>
+                        </div>
+                    `;
+                });
+            }
+
+            resultsHTML += '</div>';
+
+            // Career matches section
+            if (results.careerMatches && results.careerMatches.length > 0) {
+                resultsHTML += '<div class="result-section">';
+                resultsHTML += '<h4><i class="fas fa-briefcase"></i> Career Matches</h4>';
+
+                results.careerMatches.slice(0, 3).forEach((match, index) => {
+                    const medal = index === 0 ? '🥇' : index === 1 ? '🥈' : '🥉';
+                    resultsHTML += `
+                        <div class="mb-3 p-3 border rounded">
+                            <div class="d-flex justify-content-between align-items-center mb-2">
+                                <h5 class="mb-0">${medal} ${match.career.title}</h5>
+                                <span class="badge bg-primary">${match.matchScore}% match</span>
+                            </div>
+                            <p class="text-muted small mb-2">${match.career.description.substring(0, 100)}...</p>
+                            <div><strong>Why this matches:</strong></div>
+                            <ul class="small">
+                                ${match.matchReasons.map(reason => `<li>${reason}</li>`).join('')}
+                            </ul>
+                        </div>
+                    `;
+                });
+
+                resultsHTML += '</div>';
+            }
+
+            // Insights section
+            if (results.insights && results.insights.length > 0) {
+                resultsHTML += '<div class="result-section">';
+                resultsHTML += '<h4><i class="fas fa-lightbulb"></i> Key Insights</h4>';
+                resultsHTML += '<ul class="result-list">';
+
+                results.insights.forEach(insight => {
+                    resultsHTML += `<li>${insight}</li>`;
+                });
+
+                resultsHTML += '</ul>';
+                resultsHTML += '</div>';
+            }
+
+            // Recommendations section
+            if (results.recommendations) {
+                resultsHTML += '<div class="result-section">';
+                resultsHTML += '<h4><i class="fas fa-road"></i> Recommendations</h4>';
+
+                if (results.recommendations.immediate.length > 0) {
+                    resultsHTML += '<div class="mb-3"><strong>Immediate Next Steps:</strong></div>';
+                    resultsHTML += '<ul class="result-list">';
+                    results.recommendations.immediate.forEach(rec => {
+                        resultsHTML += `<li>${rec}</li>`;
+                    });
+                    resultsHTML += '</ul>';
+                }
+
+                if (results.recommendations.resources.length > 0) {
+                    resultsHTML += '<div class="mt-3"><strong>Recommended Resources:</strong></div>';
+                    results.recommendations.resources.forEach(resource => {
+                        resultsHTML += `
+                            <div class="mb-2">
+                                <a href="${resource.link}" class="text-decoration-none">
+                                    <strong>${resource.type}:</strong> ${resource.title}
+                                </a>
+                                <br><small class="text-muted">${resource.description}</small>
+                            </div>
+                        `;
+                    });
+                }
+
+                resultsHTML += '</div>';
+            }
+
+            // Progress comparison section
+            if (comparisons.length > 0) {
+                resultsHTML += '<div class="result-section">';
+                resultsHTML += '<h4><i class="fas fa-chart-line"></i> Progress Tracking</h4>';
+                resultsHTML += '<p class="small text-muted">Compared to your previous assessments:</p>';
+
+                comparisons.forEach(comparison => {
+                    const improvement = comparison.improvement;
+                    const trend = improvement > 0 ? '↗️ Improved' : improvement < 0 ? '↘️ Declined' : '➡️ Same';
+                    resultsHTML += `
+                        <div class="mb-2">
+                            <small>
+                                ${comparison.date.toLocaleDateString()}: ${comparison.previousScore}% →
+                                ${comparison.currentScore}% (${trend} by ${Math.abs(improvement)}%)
+                            </small>
+                        </div>
+                    `;
+                });
+
+                resultsHTML += '</div>';
+            }
+
+            document.getElementById('resultsContent').innerHTML = resultsHTML;
+        }
+
+        // Reset assessment
+        function resetAssessment() {
+            currentAssessmentType = null;
+            currentQuestionIndex = 0;
+            userAnswers = [];
+            currentQuestions = [];
+
+            document.getElementById('selectionView').style.display = 'grid';
+            document.getElementById('quizView').classList.remove('active');
+            document.getElementById('resultsView').classList.remove('active');
+        }
+
+        // Check authentication on page load
+        window.addEventListener('load', async function() {
+            const isAuthenticated = await Utils.isUserAuthenticated();
+            if (!isAuthenticated) {
+                console.log('User not authenticated, allowing guest access to assessment');
+            }
+        });
+    </script>
+</body>
+</html>

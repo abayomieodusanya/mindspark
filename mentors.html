@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mentors - MindSpark</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.3/css/all.css">
+    <style>
+        body {
+            background: #f8f9fa;
+            padding-top: 80px;
+        }
+        .hero-section {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 40px 0;
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        .mentors-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .search-box {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            margin-bottom: 30px;
+        }
+        .mentor-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            margin-bottom: 25px;
+            transition: all 0.3s;
+            display: flex;
+            flex-direction: column;
+        }
+        .mentor-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 20px rgba(0,0,0,0.15);
+        }
+        .mentor-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 25px;
+            text-align: center;
+        }
+        .mentor-avatar {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2em;
+            margin: 0 auto 15px;
+        }
+        .mentor-name {
+            font-size: 1.3em;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        .mentor-title {
+            font-size: 0.95em;
+            opacity: 0.9;
+            margin-bottom: 5px;
+        }
+        .mentor-company {
+            font-size: 0.85em;
+            opacity: 0.8;
+        }
+        .mentor-body {
+            padding: 20px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        .mentor-bio {
+            color: #666;
+            margin-bottom: 15px;
+            line-height: 1.5;
+            font-size: 0.95em;
+        }
+        .mentor-info {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin: 15px 0;
+            padding: 15px 0;
+            border-top: 1px solid #eee;
+            border-bottom: 1px solid #eee;
+        }
+        .info-item {
+            font-size: 0.9em;
+        }
+        .info-label {
+            color: #999;
+            display: block;
+            margin-bottom: 3px;
+        }
+        .info-value {
+            color: #667eea;
+            font-weight: 600;
+        }
+        .skills-section {
+            margin: 15px 0;
+        }
+        .skills-label {
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 8px;
+            font-size: 0.9em;
+        }
+        .skill-tag {
+            display: inline-block;
+            background: #e8eaf6;
+            color: #667eea;
+            padding: 5px 10px;
+            border-radius: 12px;
+            margin: 3px 5px 3px 0;
+            font-size: 0.85em;
+        }
+        .mentor-actions {
+            display: flex;
+            gap: 10px;
+            margin-top: auto;
+            padding-top: 15px;
+            border-top: 1px solid #eee;
+        }
+        .btn-request {
+            flex: 1;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-weight: 600;
+        }
+        .btn-request:hover {
+            transform: translateY(-2px);
+            color: white;
+        }
+        .filter-buttons {
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        .filter-btn {
+            background: white;
+            border: 1px solid #ddd;
+            padding: 8px 15px;
+            margin: 5px;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        .filter-btn.active {
+            background: #667eea;
+            color: white;
+            border-color: #667eea;
+        }
+        .rating {
+            color: #f39c12;
+            font-size: 0.9em;
+        }
+        .mentors-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 20px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">MindSpark</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="offcanvas offcanvas-end" id="offcanvasNavbar">
+                <div class="offcanvas-header">
+                    <h5>Menu</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="offcanvas"></button>
+                </div>
+                <div class="offcanvas-body">
+                    <ul class="navbar-nav ms-auto">
+                        <li class="nav-item"><a class="nav-link" href="blog.html">Blog</a></li>
+                        <li class="nav-item"><a class="nav-link" href="careers.html">Careers</a></li>
+                        <li class="nav-item"><a class="nav-link" href="assessment.html">Assessment</a></li>
+                        <li class="nav-item"><a class="nav-link" href="community.html">Community</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <section class="hero-section">
+        <h1>Find Your Mentor</h1>
+        <p>Connect with experienced professionals who can guide your journey</p>
+    </section>
+
+    <!-- Main Content -->
+    <div class="container mentors-container">
+        <!-- Search Box -->
+        <div class="search-box">
+            <div class="row">
+                <div class="col-md-8">
+                    <input type="text" id="searchInput" class="form-control" placeholder="Search mentors by name, expertise, or company...">
+                </div>
+                <div class="col-md-4">
+                    <select id="fieldFilter" class="form-select">
+                        <option value="">All Expertise Areas</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mentors Grid -->
+        <div id="mentorsList" class="mentors-grid"></div>
+
+        <div id="loadingSpinner" class="text-center my-4" style="display:none;">
+            <div class="spinner-border text-primary" role="status">
+                <span class="visually-hidden">Loading...</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer style="background: #f8f9fa; padding: 20px; text-align: center; margin-top: 50px; border-top: 1px solid #e0e0e0;">
+        <p>&copy; 2024 MindSpark. All rights reserved.</p>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="js/mentor-manager.js"></script>
+
+    <script>
+        let allMentors = [];
+
+        async function loadMentors() {
+            const mentorsList = document.getElementById('mentorsList');
+            const loading = document.getElementById('loadingSpinner');
+            const fieldFilter = document.getElementById('fieldFilter');
+            
+            loading.style.display = 'block';
+
+            // Get all mentors from MentorManager
+            allMentors = MentorManager.getAllMentors();
+
+            // Populate field filter
+            const fields = [...new Set(allMentors.flatMap(m => m.fields))];
+            fields.forEach(field => {
+                const option = document.createElement('option');
+                option.value = field.toLowerCase();
+                option.textContent = field;
+                fieldFilter.appendChild(option);
+            });
+
+            // Display mentors
+            displayMentors(allMentors);
+
+            loading.style.display = 'none';
+        }
+
+        function displayMentors(mentors) {
+            const mentorsList = document.getElementById('mentorsList');
+
+            if (mentors.length === 0) {
+                mentorsList.innerHTML = `
+                    <div style="text-align: center; padding: 60px 20px; grid-column: 1/-1;">
+                        <i class="fas fa-search" style="font-size: 3em; color: #667eea; margin-bottom: 20px;"></i>
+                        <h3>No mentors found</h3>
+                        <p>Try adjusting your search criteria</p>
+                    </div>
+                `;
+            } else {
+                mentorsList.innerHTML = mentors.map(mentor => `
+                    <div class="mentor-card">
+                        <div class="mentor-header">
+                            <div class="mentor-avatar">
+                                <i class="fas fa-user"></i>
+                            </div>
+                            <div class="mentor-name">${mentor.name}</div>
+                            <div class="mentor-title">${mentor.title}</div>
+                            <div class="mentor-company">@ ${mentor.company}</div>
+                        </div>
+                        <div class="mentor-body">
+                            <div class="mentor-bio">${mentor.bio}</div>
+                            
+                            <div class="mentor-info">
+                                <div class="info-item">
+                                    <span class="info-label">Experience</span>
+                                    <span class="info-value">${mentor.yearsExperience}+ years</span>
+                                </div>
+                                <div class="info-item">
+                                    <span class="info-label">Availability</span>
+                                    <span class="info-value">${mentor.availability.slice(0, 1).toUpperCase() + mentor.availability.slice(1)}</span>
+                                </div>
+                                <div class="info-item">
+                                    <span class="info-label">Session Type</span>
+                                    <span class="info-value">${mentor.sessionPreference}</span>
+                                </div>
+                                <div class="info-item">
+                                    <span class="info-label">Rate</span>
+                                    <span class="info-value">$${mentor.hourlyRate}/hr</span>
+                                </div>
+                            </div>
+
+                            <div class="skills-section">
+                                <div class="skills-label">Expertise:</div>
+                                ${mentor.expertise.map(skill => `<span class="skill-tag">${skill}</span>`).join('')}
+                            </div>
+
+                            <div class="mentor-actions">
+                                <button class="btn-request" onclick="requestMentor('${mentor.id}', '${mentor.name}')">
+                                    <i class="fas fa-envelope"></i> Request
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                `).join('');
+            }
+        }
+
+        function requestMentor(mentorId, mentorName) {
+            alert(`Mentorship request sent to ${mentorName}! We'll notify you when they respond.`);
+        }
+
+        // Search and filter functionality
+        document.getElementById('searchInput').addEventListener('input', filterMentors);
+        document.getElementById('fieldFilter').addEventListener('change', filterMentors);
+
+        function filterMentors() {
+            const searchTerm = document.getElementById('searchInput').value.toLowerCase();
+            const fieldTerm = document.getElementById('fieldFilter').value.toLowerCase();
+
+            const filtered = allMentors.filter(mentor => {
+                const matchesSearch = mentor.name.toLowerCase().includes(searchTerm) ||
+                                      mentor.company.toLowerCase().includes(searchTerm) ||
+                                      mentor.expertise.some(e => e.toLowerCase().includes(searchTerm)) ||
+                                      mentor.bio.toLowerCase().includes(searchTerm);
+                const matchesField = !fieldTerm || mentor.fields.some(f => f.toLowerCase() === fieldTerm);
+                return matchesSearch && matchesField;
+            });
+
+            displayMentors(filtered);
+        }
+
+        // Load on page load
+        window.addEventListener('load', loadMentors);
+    </script>
+</body>
+</html>
