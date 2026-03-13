@@ -15,11 +15,11 @@
       <link rel="stylesheet" href="css/style.css">
       <link rel="stylesheet" href="css/responsiveness.css">
       
-      <!-- Firebase SDK -->
-      <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-app.js"></script>
-      <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-auth.js"></script>
-      <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-firestore.js"></script>
-      <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-storage.js"></script>
+      <!-- GitHub OAuth Configuration -->
+      <script>
+        // Set your backend URL here
+        window.BACKEND_URL = 'http://localhost:5000';
+      </script>
       
       <style>
         /* Your CSS code here */
@@ -35,51 +35,107 @@
       </style>
   </head>  
   <body> 
-    <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
-      <div class="container">
-        <a class="navbar-brand" href="index.html">MindSpark</a>
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+      <div class="container-fluid px-4">
+        <!-- Brand with Logo -->
+        <a class="navbar-brand d-flex align-items-center" href="index.html">
+          <div class="brand-icon">
+            <i class="fas fa-brain"></i>
+          </div>
+          <span class="brand-text ms-2">MindSpark</span>
+        </a>
         
-        <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar">
-          <span class="navbar-toggler-icon">
-            <span class="line"></span>
-            <span class="line"></span>
-            <span class="line"></span>
-          </span>
-          <span class="visually-hidden">Toggle navigation</span>
+        <!-- Mobile Toggle Button -->
+        <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
         </button>
 
-        
+        <!-- Desktop Navigation -->
+        <div id="navbarNav">
+          <ul class="navbar-nav ms-auto gap-1">
+            <li class="nav-item">
+              <a class="nav-link" href="assessment.html">
+                <i class="fas fa-clipboard-list"></i> Assessment
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="careers.html">
+                <i class="fas fa-briefcase"></i> Careers
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="blog.html">
+                <i class="fas fa-newspaper"></i> Blog
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="videos.html">
+                <i class="fas fa-play-circle"></i> Videos
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="mentors.html">
+                <i class="fas fa-user-tie"></i> Mentors
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="community.html">
+                <i class="fas fa-users"></i> Community
+              </a>
+            </li>
+            <li class="nav-item ms-2">
+              <a class="nav-link auth-btn" href="login.html">
+                <i class="fas fa-sign-in-alt"></i> Sign In
+              </a>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Mobile Offcanvas Menu -->
         <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
           <div class="offcanvas-header">
-            <h5 class="offcanvas-title" id="offcanvasNavbarLabel">Menu</h5>
-            <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+            <h5 class="offcanvas-title" id="offcanvasNavbarLabel">
+              <i class="fas fa-brain me-2"></i>MindSpark
+            </h5>
+            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
           </div>
           <div class="offcanvas-body">
-            <ul class="navbar-nav mb-2 mb-lg-0">
-             
+            <ul class="navbar-nav">
               <li class="nav-item">
-                <a class="nav-link" href="assessment.html">Take Assessment</a>
-              </li>
-              
-              <li class="nav-item">
-                <a class="nav-link" href="careers.html">Explore Careers</a>
-              </li>
-             
-              <li class="nav-item">
-                <a class="nav-link" href="blog.html">Blog</a>
-              </li>
-             
-              <li class="nav-item">
-                <a class="nav-link" href="videos.html">Videos</a>
+                <a class="nav-link" href="assessment.html">
+                  <i class="fas fa-clipboard-list"></i> Take Assessment
+                </a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="mentors.html">Find a Mentor</a>
+                <a class="nav-link" href="careers.html">
+                  <i class="fas fa-briefcase"></i> Explore Careers
+                </a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="community.html">Community</a>
+                <a class="nav-link" href="blog.html">
+                  <i class="fas fa-newspaper"></i> Blog
+                </a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="login.html">Sign In</a>
+                <a class="nav-link" href="videos.html">
+                  <i class="fas fa-play-circle"></i> Videos
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="mentors.html">
+                  <i class="fas fa-user-tie"></i> Find a Mentor
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="community.html">
+                  <i class="fas fa-users"></i> Community
+                </a>
+              </li>
+              <hr class="my-3">
+              <li class="nav-item">
+                <a class="nav-link auth-link" href="login.html">
+                  <i class="fas fa-sign-in-alt"></i> Sign In
+                </a>
               </li>
             </ul>
           </div>
@@ -246,10 +302,8 @@
       <script src="https://use.fontawesome.com/releases/v5.15.3/js/all.js"></script>
       <script src="js/bootstrap.js"></script>
       
-      <!-- Firebase Configuration & Modules -->
-      <script src="js/firebase-config.js"></script>
-      <script src="js/firebase-auth.js"></script>
-      <script src="js/firebase-db.js"></script>
+      <!-- GitHub Auth & App Modules -->
+      <script src="js/github-auth.js"></script>
       <script src="js/constants.js"></script>
       <script src="js/utils.js"></script>
       

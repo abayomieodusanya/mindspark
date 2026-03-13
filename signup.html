@@ -134,11 +134,11 @@
         }
     </style>
 
-    <!-- Firebase SDK -->
-    <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-auth.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-firestore.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-storage.js"></script>
+    <!-- GitHub OAuth Configuration -->
+    <script>
+        // Set your backend URL here
+        window.BACKEND_URL = 'http://localhost:5000';
+    </script>
 </head>
 <body>
     <div class="auth-container">
@@ -150,190 +150,50 @@
         <div class="auth-body">
             <div id="alertContainer"></div>
 
-            <form id="signupForm">
-                <div class="form-group">
-                    <label for="fullName" class="form-label">Full Name</label>
-                    <input 
-                        type="text" 
-                        class="form-control" 
-                        id="fullName" 
-                        name="fullName"
-                        placeholder="John Doe"
-                        required
-                    >
-                </div>
-
-                <div class="form-group">
-                    <label for="email" class="form-label">Email Address</label>
-                    <input 
-                        type="email" 
-                        class="form-control" 
-                        id="email" 
-                        name="email"
-                        placeholder="you@example.com"
-                        required
-                    >
-                </div>
-
-                <div class="form-group">
-                    <label for="age" class="form-label">Age</label>
-                    <input 
-                        type="number" 
-                        class="form-control" 
-                        id="age" 
-                        name="age"
-                        placeholder="16"
-                        min="10"
-                        max="25"
-                        required
-                    >
-                </div>
-
-                <div class="form-group">
-                    <label for="grade" class="form-label">Grade/Year</label>
-                    <select class="form-control" id="grade" name="grade" required>
-                        <option value="">Select your grade</option>
-                        <option value="Grade 6">Grade 6</option>
-                        <option value="Grade 7">Grade 7</option>
-                        <option value="Grade 8">Grade 8</option>
-                        <option value="Grade 9">Grade 9</option>
-                        <option value="Grade 10">Grade 10</option>
-                        <option value="Grade 11">Grade 11</option>
-                        <option value="Grade 12">Grade 12</option>
-                    </select>
-                </div>
-
-                <div class="form-group">
-                    <label for="password" class="form-label">Password</label>
-                    <input 
-                        type="password" 
-                        class="form-control" 
-                        id="password" 
-                        name="password"
-                        placeholder="••••••••"
-                        required
-                    >
-                    <small class="form-text">Min 6 chars, 1 uppercase letter, 1 number</small>
-                    <div class="password-strength">
-                        <div class="strength-bar" id="strengthBar"></div>
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <label for="confirmPassword" class="form-label">Confirm Password</label>
-                    <input 
-                        type="password" 
-                        class="form-control" 
-                        id="confirmPassword" 
-                        name="confirmPassword"
-                        placeholder="••••••••"
-                        required
-                    >
-                </div>
-
-                <div class="form-group form-check">
-                    <input 
-                        type="checkbox" 
-                        class="form-check-input" 
-                        id="agreeTerms"
-                        required
-                    >
-                    <label class="form-check-label" for="agreeTerms">
-                        I agree to the <a href="#">Terms and Conditions</a>
-                    </label>
-                </div>
-
-                <button type="submit" class="btn btn-signup">
-                    <span class="btn-text">Create Account</span>
+            <div class="form-group">
+                <button type="button" class="btn btn-signup" onclick="handleGitHubSignup()" style="display: flex; align-items: center; justify-content: center; gap: 10px;">
+                    <i class="fab fa-github"></i>
+                    <span class="btn-text">Sign Up with GitHub</span>
                     <span class="spinner-border spinner-border-sm loading ms-2" role="status" aria-hidden="true"></span>
                 </button>
-            </form>
+            </div>
+
+            <p class="text-center text-muted mt-4" style="font-size: 0.9em;">
+                We use your GitHub account for secure authentication. Your profile information will be safely stored in your GitHub repository.
+            </p>
 
             <div class="auth-footer">
-                Already have an account? <a href="login.html">Sign In</a>
+                <p class="mb-0">Already have an account? <a href="login.html">Sign In</a></p>
             </div>
         </div>
     </div>
 
-    <!-- Firebase Configuration & Modules -->
-    <script src="js/firebase-config.js"></script>
-    <script src="js/firebase-auth.js"></script>
+    <!-- GitHub Auth Module -->
+    <script src="js/github-auth.js"></script>
     <script src="js/utils.js"></script>
 
     <script>
-        // Password strength indicator
-        document.getElementById('password').addEventListener('input', function(e) {
-            const password = e.target.value;
-            const strengthBar = document.getElementById('strengthBar');
-            let strength = 0;
-
-            if (password.length >= 6) strength += 25;
-            if (/[A-Z]/.test(password)) strength += 25;
-            if (/[0-9]/.test(password)) strength += 25;
-            if (/[^a-zA-Z0-9]/.test(password)) strength += 25;
-
-            strengthBar.style.width = strength + '%';
+        // Handle GitHub signup
+        function handleGitHubSignup() {
+            const btnText = document.querySelector('.btn-text');
+            const spinner = document.querySelector('.loading');
             
-            if (strength < 50) strengthBar.style.backgroundColor = '#f44336';
-            else if (strength < 75) strengthBar.style.backgroundColor = '#ff9800';
-            else strengthBar.style.backgroundColor = '#4caf50';
-        });
-
-        // Handle form submission
-        document.getElementById('signupForm').addEventListener('submit', async function(e) {
-            e.preventDefault();
-
-            const alertContainer = document.getElementById('alertContainer');
-            alertContainer.innerHTML = '';
-
-            const fullName = document.getElementById('fullName').value.trim();
-            const email = document.getElementById('email').value.trim();
-            const age = parseInt(document.getElementById('age').value);
-            const grade = document.getElementById('grade').value;
-            const password = document.getElementById('password').value;
-            const confirmPassword = document.getElementById('confirmPassword').value;
-
-            // Validation
-            if (!fullName) {
-                Utils.showError('Please enter your full name');
-                return;
-            }
-
-            if (!Utils.isValidEmail(email)) {
-                Utils.showError('Please enter a valid email address');
-                return;
-            }
-
-            if (!Utils.isValidPassword(password)) {
-                Utils.showError('Password must be at least 6 characters with 1 uppercase letter and 1 number');
-                return;
-            }
-
-            if (password !== confirmPassword) {
-                Utils.showError('Passwords do not match');
-                return;
-            }
-
-            // Show loading state
-            document.querySelector('.btn-text').style.display = 'none';
-            document.querySelector('.loading').style.display = 'inline-block';
+            btnText.style.display = 'none';
+            spinner.style.display = 'inline-block';
 
             try {
-                await AuthManager.registerUser(email, password, {
-                    fullName,
-                    age,
-                    grade
-                });
-
-                Utils.showSuccess('Account created successfully! Redirecting...');
-                setTimeout(() => {
-                    Utils.redirectTo('dashboard.html');
-                }, 2000);
-
+                GitHubAuthManager.initiateGitHubLogin();
             } catch (error) {
-                Utils.showError(error.message);
-                document.querySelector('.btn-text').style.display = 'inline';
-                document.querySelector('.loading').style.display = 'none';
+                Utils.showError('Failed to initiate signup: ' + error.message);
+                btnText.style.display = 'inline';
+                spinner.style.display = 'none';
+            }
+        }
+
+        // Check if already logged in
+        window.addEventListener('load', async () => {
+            if (GitHubAuthManager.isAuthenticated()) {
+                window.location.href = 'dashboard.html';
             }
         });
     </script>
