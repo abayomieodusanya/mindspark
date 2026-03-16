@@ -310,29 +310,56 @@ class CommunityManager {
     }
   }
 
-  // Get trending posts
-  static async getTrendingPosts(limit = 10) {
-    try {
-      const snapshot = await db.collection('forum_posts')
-        .where('isLocked', '==', false)
-        .orderBy('likes', 'desc')
-        .limit(limit)
-        .get();
-
-      const posts = [];
-      snapshot.forEach(doc => {
-        posts.push({
-          id: doc.id,
-          ...doc.data(),
-          createdAt: doc.data().createdAt?.toDate() || new Date()
-        });
-      });
-
-      return posts;
-    } catch (error) {
-      console.error('Error fetching trending posts:', error);
-      throw error;
+  // Sample posts for demo purposes
+  static SAMPLE_POSTS = [
+    {
+      id: '1',
+      userId: 'sample1',
+      title: 'How do I prepare for a software engineering internship?',
+      content: 'I\'m a high school junior interested in software engineering. What skills should I focus on to land a good internship? Any advice on building a portfolio?',
+      category: 'internships',
+      createdAt: new Date('2024-03-10'),
+      likes: 12,
+      replies: [
+        { id: 'r1', userId: 'mentor1', content: 'Start with learning Python or JavaScript. Build projects on GitHub!', createdAt: new Date('2024-03-10') },
+        { id: 'r2', userId: 'student1', content: 'I recommend freeCodeCamp for beginners.', createdAt: new Date('2024-03-11') }
+      ],
+      views: 45
+    },
+    {
+      id: '2',
+      userId: 'sample2',
+      title: 'Dealing with test anxiety',
+      content: 'I get really nervous before exams. Does anyone have tips for managing test anxiety?',
+      category: 'mental-health',
+      createdAt: new Date('2024-03-09'),
+      likes: 8,
+      replies: [
+        { id: 'r3', userId: 'counselor1', content: 'Deep breathing exercises and positive visualization help a lot.', createdAt: new Date('2024-03-09') }
+      ],
+      views: 32
+    },
+    {
+      id: '3',
+      userId: 'sample3',
+      title: 'What does a graphic designer actually do?',
+      content: 'I\'m considering graphic design as a career but I\'m not sure what the day-to-day work looks like. Can someone explain?',
+      category: 'career-questions',
+      createdAt: new Date('2024-03-08'),
+      likes: 15,
+      replies: [
+        { id: 'r4', userId: 'designer1', content: 'We create visual content for brands - logos, websites, marketing materials, etc.', createdAt: new Date('2024-03-08') },
+        { id: 'r5', userId: 'student2', content: 'Also involves a lot of client communication and revisions!', createdAt: new Date('2024-03-09') }
+      ],
+      views: 67
     }
+  ];
+
+  // Get trending posts (sample data for demo)
+  static getTrendingPosts(limit = 5) {
+    return this.SAMPLE_POSTS
+      .sort((a, b) => b.likes - a.likes)
+      .slice(0, limit);
   }
 
   // Get most recent posts

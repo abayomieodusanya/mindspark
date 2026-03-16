@@ -11,6 +11,12 @@ const firebaseConfig = {
   appId: "YOUR_APP_ID"
 };
 
+// Validate basic configuration
+const isPlaceholderConfig = Object.values(firebaseConfig).some(value => typeof value === 'string' && value.includes('YOUR_'));
+if (isPlaceholderConfig) {
+  console.warn('Firebase configuration appears to be placeholder values. Please update js/firebase-config.js with your Firebase project settings.');
+}
+
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
 

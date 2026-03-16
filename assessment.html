@@ -883,7 +883,8 @@
 
             } catch (error) {
                 console.error('Error processing assessment:', error);
-                Utils.showError('Error processing your assessment. Please try again.');
+                const errMsg = error?.message ? `: ${error.message}` : '';
+                Utils.showError(`Error processing your assessment${errMsg}. Please check the console for details.`);
             } finally {
                 // Reset button state
                 const submitBtn = document.getElementById('submitBtn');

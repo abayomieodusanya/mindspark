@@ -296,6 +296,760 @@ class BlogManager {
       createdAt: new Date('2026-02-15'),
       views: 634,
       likes: 112
+    },
+    {
+      id: 'identity-crisis-teens',
+      title: 'Navigating Identity Crisis as a Teenager',
+      excerpt: 'Discovering your true identity can be a challenging journey. Learn how to overcome an identity crisis and embrace who you are.',
+      content: `
+        <h2>Navigating Identity Crisis as a Teenager</h2>
+        <p>Identity crisis is a normal part of growing up. As a teenager, you're constantly evolving, questioning who you are, and trying to figure out where you fit in the world. This journey, while challenging, is essential for your personal development.</p>
+        
+        <h3>What is an Identity Crisis?</h3>
+        <p>An identity crisis occurs when you begin to question your values, beliefs, and sense of self. It's common during adolescence because:</p>
+        <ul>
+          <li>Your brain is still developing</li>
+          <li>You're exposed to new ideas and perspectives</li>
+          <li>Social pressures and expectations change</li>
+          <li>You're transitioning from childhood to adulthood</li>
+        </ul>
+        
+        <h3>Signs You Might Be Experiencing an Identity Crisis</h3>
+        <ul>
+          <li>Feeling lost or directionless</li>
+          <li>Questioning your values and beliefs</li>
+          <li>Changing interests frequently</li>
+          <li>Feeling pressure to fit in</li>
+          <li>Doubting your abilities and worth</li>
+          <li>Experiencing mood swings or confusion</li>
+        </ul>
+        
+        <h3>How to Navigate Through It</h3>
+        
+        <h4>1. Self-Reflection</h4>
+        <p>Take time to understand yourself better:</p>
+        <ul>
+          <li>Journal about your thoughts and feelings</li>
+          <li>Identify what truly matters to you</li>
+          <li>Explore your interests without judgment</li>
+          <li>Notice patterns in what makes you happy</li>
+        </ul>
+        
+        <h4>2. Try New Things</h4>
+        <p>Experiment with different activities and experiences:</p>
+        <ul>
+          <li>Join clubs or sports teams</li>
+          <li>Take different classes or electives</li>
+          <li>Volunteer for causes you care about</li>
+          <li>Explore hobbies and creative outlets</li>
+        </ul>
+        
+        <h4>3. Seek Support</h4>
+        <p>Don't go through this alone:</p>
+        <ul>
+          <li>Talk to trusted friends or family</li>
+          <li>Consult a school counselor</li>
+          <li>Consider talking to a therapist</li>
+          <li>Join support groups or online communities</li>
+        </ul>
+        
+        <h4>4. Be Patient with Yourself</h4>
+        <p>Identity formation takes time. It's okay to:</p>
+        <ul>
+          <li>Change your mind about career goals</li>
+          <li>Outgrow old friendships</li>
+          <li>Question beliefs you've held for years</li>
+          <li>Feel confused or uncertain</li>
+        </ul>
+        
+        <h3>The Positive Side</h3>
+        <p>While identity crises can be uncomfortable, they lead to:</p>
+        <ul>
+          <li>Greater self-awareness</li>
+          <li>Stronger sense of purpose</li>
+          <li>Better decision-making skills</li>
+          <li>More authentic relationships</li>
+          <li>Increased resilience</li>
+        </ul>
+        
+        <h3>When to Seek Professional Help</h3>
+        <p>If your identity crisis is causing:</p>
+        <ul>
+          <li>Severe anxiety or depression</li>
+          <li>Difficulty functioning in daily life</li>
+          <li>Thoughts of self-harm</li>
+          <li>Persistent feelings of worthlessness</li>
+        </ul>
+        <p>Please reach out to a mental health professional or crisis hotline immediately.</p>
+        
+        <h3>Remember</h3>
+        <p>Your identity is not fixed - it's a journey of discovery. Be kind to yourself during this process. You're not alone, and it's okay to take your time finding your path.</p>
+      `,
+      author: 'Dr. Sarah Johnson',
+      category: 'Personal Development',
+      tags: ['identity', 'self-discovery', 'teens', 'personal growth'],
+      coverImage: 'Assets/whoami.jpg',
+      readTime: '6 min read',
+      createdAt: new Date('2026-03-10'),
+      views: 189,
+      likes: 34
+    },
+    {
+      id: 'self-expression-teens',
+      title: 'The Power of Self-Expression for Teenagers',
+      excerpt: 'Self expression can feel hard when you\'re still finding yourself. This guide explores how to use creative outlets to learn more about who you are.',
+      content: `
+        <h2>The Power of Self-Expression for Teenagers</h2>
+        <p>Self-expression is how you communicate your thoughts, feelings, and identity to the world. As a teenager, finding healthy ways to express yourself is crucial for mental health and personal development.</p>
+        
+        <h3>Why Self-Expression Matters</h3>
+        <p>Expressing yourself helps you:</p>
+        <ul>
+          <li>Process emotions and experiences</li>
+          <li>Discover and understand your identity</li>
+          <li>Build confidence and self-esteem</li>
+          <li>Connect with others who share your interests</li>
+          <li>Reduce stress and anxiety</li>
+          <li>Develop creativity and problem-solving skills</li>
+        </ul>
+        
+        <h3>Different Ways to Express Yourself</h3>
+        
+        <h4>Creative Arts</h4>
+        <ul>
+          <li><strong>Drawing/Painting:</strong> Visual art can express emotions that words can't capture</li>
+          <li><strong>Writing:</strong> Journaling, poetry, stories, or blogging</li>
+          <li><strong>Music:</strong> Playing instruments, singing, or creating playlists</li>
+          <li><strong>Dance/Movement:</strong> Physical expression through various dance styles</li>
+          <li><strong>Photography:</strong> Capturing moments that represent how you see the world</li>
+        </ul>
+        
+        <h4>Digital Expression</h4>
+        <ul>
+          <li><strong>Social Media:</strong> Share your thoughts, art, or experiences (mindfully)</li>
+          <li><strong>Video Content:</strong> Vlogs, tutorials, or creative videos</li>
+          <li><strong>Digital Art:</strong> Graphic design, digital painting, or animation</li>
+          <li><strong>Coding/Gaming:</strong> Create apps, games, or websites</li>
+        </ul>
+        
+        <h4>Physical Expression</h4>
+        <ul>
+          <li><strong>Sports/Exercise:</strong> Channel energy through physical activity</li>
+          <li><strong>Fashion:</strong> Express your style through clothing and accessories</li>
+          <li><strong>Body Art:</strong> Temporary tattoos, henna, or safe body modifications</li>
+        </ul>
+        
+        <h4>Verbal Expression</h4>
+        <ul>
+          <li><strong>Public Speaking:</strong> Join debate club or give presentations</li>
+          <li><strong>Podcasting:</strong> Share your voice and opinions</li>
+          <li><strong>Conversations:</strong> Open discussions with friends and family</li>
+        </ul>
+        
+        <h3>Overcoming Barriers to Self-Expression</h3>
+        
+        <h4>Fear of Judgment</h4>
+        <p>Many teens worry about what others will think. Remember:</p>
+        <ul>
+          <li>Not everyone needs to like your expression</li>
+          <li>Authenticity attracts the right people</li>
+          <li>Practice privately before sharing publicly</li>
+          <li>Start small with trusted friends</li>
+        </ul>
+        
+        <h4>Lack of Confidence</h4>
+        <p>Build confidence gradually:</p>
+        <ul>
+          <li>Focus on the process, not perfection</li>
+          <li>Celebrate small improvements</li>
+          <li>Learn from constructive feedback</li>
+          <li>Compare yourself only to your past self</li>
+        </ul>
+        
+        <h4>Time and Resource Constraints</h4>
+        <ul>
+          <li>Start with what you have (phone, paper, voice)</li>
+          <li>Use free online resources and tutorials</li>
+          <li>Express yourself during short daily moments</li>
+          <li>Join free community groups or online forums</li>
+        </ul>
+        
+        <h3>Finding Your Voice</h3>
+        <p>Discover what works best for you:</p>
+        <ol>
+          <li><strong>Experiment:</strong> Try different forms of expression</li>
+          <li><strong>Reflect:</strong> Notice what feels most authentic</li>
+          <li><strong>Practice:</strong> Regular practice builds skills and confidence</li>
+          <li><strong>Share:</strong> Start with safe spaces, expand gradually</li>
+          <li><strong>Evolve:</strong> Your expression will change as you grow</li>
+        </ol>
+        
+        <h3>The Impact on Mental Health</h3>
+        <p>Regular self-expression can:</p>
+        <ul>
+          <li>Reduce stress and anxiety</li>
+          <li>Improve mood and emotional regulation</li>
+          <li>Build resilience and coping skills</li>
+          <li>Increase self-awareness and acceptance</li>
+          <li>Strengthen relationships and social connections</li>
+        </ul>
+        
+        <h3>Final Thoughts</h3>
+        <p>Your voice matters. Your experiences, thoughts, and feelings are unique and valuable. Don't wait for permission to express yourself - the world needs your perspective. Start small, be patient with yourself, and remember that self-expression is a journey, not a destination.</p>
+      `,
+      author: 'Creative Arts Therapist Maria Rodriguez',
+      category: 'Personal Development',
+      tags: ['self-expression', 'creativity', 'confidence', 'mental health'],
+      coverImage: 'Assets/know_yourslf.jpg',
+      readTime: '7 min read',
+      createdAt: new Date('2026-03-08'),
+      views: 156,
+      likes: 28
+    },
+    {
+      id: 'teen-mental-stress-causes',
+      title: 'Understanding Mental Stress in Teenagers: Causes and Solutions',
+      excerpt: 'Mental stress in teenagers is a common issue caused by pressure, relationships, and life changes. Learn practical coping strategies.',
+      content: `
+        <h2>Understanding Mental Stress in Teenagers: Causes and Solutions</h2>
+        <p>Mental stress is a natural response to challenging situations, but when it becomes chronic, it can significantly impact a teenager's well-being, academic performance, and relationships. Understanding the causes and learning effective coping strategies is crucial for maintaining mental health.</p>
+        
+        <h3>Common Causes of Mental Stress in Teenagers</h3>
+        
+        <h4>Academic Pressure</h4>
+        <ul>
+          <li>Heavy coursework and homework loads</li>
+          <li>High-stakes exams and standardized testing</li>
+          <li>Performance expectations from parents and teachers</li>
+          <li>Competition for college admissions</li>
+          <li>Time management challenges</li>
+        </ul>
+        
+        <h4>Social and Relationship Issues</h4>
+        <ul>
+          <li>Peer pressure and fitting in</li>
+          <li>Bullying or social exclusion</li>
+          <li>Romantic relationships and breakups</li>
+          <li>Family conflicts or changes</li>
+          <li>Social media comparison and cyberbullying</li>
+        </ul>
+        
+        <h4>Developmental Changes</h4>
+        <ul>
+          <li>Puberty and physical changes</li>
+          <li>Identity formation and self-discovery</li>
+          <li>Increased independence and responsibility</li>
+          <li>Future planning and career decisions</li>
+          <li>Emotional regulation challenges</li>
+        </ul>
+        
+        <h4>External Factors</h4>
+        <ul>
+          <li>Financial stress in the family</li>
+          <li>Moving or changing schools</li>
+          <li>Health issues or chronic illness</li>
+          <li>Traumatic events or loss</li>
+          <li>Societal and world events</li>
+        </ul>
+        
+        <h3>Signs of Excessive Stress</h3>
+        <p>While some stress is normal, excessive stress may show as:</p>
+        <ul>
+          <li>Physical symptoms: headaches, stomach aches, fatigue</li>
+          <li>Emotional changes: irritability, mood swings, anxiety</li>
+          <li>Behavioral changes: withdrawal, changes in eating/sleeping</li>
+          <li>Cognitive issues: difficulty concentrating, memory problems</li>
+          <li>Academic decline: dropping grades, skipping school</li>
+        </ul>
+        
+        <h3>Effective Coping Strategies</h3>
+        
+        <h4>Immediate Stress Relief Techniques</h4>
+        <ul>
+          <li><strong>Deep Breathing:</strong> 4-7-8 breathing (inhale 4 counts, hold 7, exhale 8)</li>
+          <li><strong>Progressive Muscle Relaxation:</strong> Tense and release muscle groups</li>
+          <li><strong>Mindfulness:</strong> Focus on the present moment without judgment</li>
+          <li><strong>Physical Activity:</strong> Walk, run, dance, or do yoga</li>
+          <li><strong>Creative Outlets:</strong> Draw, write, play music, or create art</li>
+        </ul>
+        
+        <h4>Long-term Stress Management</h4>
+        <ul>
+          <li><strong>Time Management:</strong> Use planners, break tasks into smaller steps</li>
+          <li><strong>Healthy Lifestyle:</strong> Regular sleep, balanced diet, exercise</li>
+          <li><strong>Social Support:</strong> Talk to friends, family, or counselors</li>
+          <li><strong>Boundaries:</strong> Learn to say no and set limits</li>
+          <li><strong>Hobbies:</strong> Engage in activities you enjoy</li>
+          <li><strong>Professional Help:</strong> Therapy or counseling when needed</li>
+        </ul>
+        
+        <h4>Digital Wellness</h4>
+        <ul>
+          <li>Limit social media time and comparison</li>
+          <li>Take regular breaks from screens</li>
+          <li>Curate your online environment positively</li>
+          <li>Use technology mindfully, not as an escape</li>
+        </ul>
+        
+        <h3>Building Resilience</h3>
+        <p>Develop skills to handle stress better:</p>
+        <ul>
+          <li><strong>Growth Mindset:</strong> View challenges as opportunities to learn</li>
+          <li><strong>Problem-Solving:</strong> Break problems into manageable parts</li>
+          <li><strong>Emotional Intelligence:</strong> Understand and manage your emotions</li>
+          <li><strong>Self-Compassion:</strong> Be kind to yourself during difficult times</li>
+          <li><strong>Adaptability:</strong> Learn to adjust to changing circumstances</li>
+        </ul>
+        
+        <h3>When to Seek Help</h3>
+        <p>Consult a professional if stress is causing:</p>
+        <ul>
+          <li>Severe anxiety or panic attacks</li>
+          <li>Depression or persistent sadness</li>
+          <li>Changes in eating or sleeping patterns</li>
+          <li>Difficulty functioning in daily life</li>
+          <li>Thoughts of self-harm or suicide</li>
+        </ul>
+        
+        <h3>Supporting Teens with Stress</h3>
+        <p>If you're a parent, teacher, or friend:</p>
+        <ul>
+          <li>Listen without judgment</li>
+          <li>Validate their feelings</li>
+          <li>Help them identify stress sources</li>
+          <li>Encourage healthy coping strategies</li>
+          <li>Know when to suggest professional help</li>
+          <li>Model healthy stress management</li>
+        </ul>
+        
+        <h3>Final Thoughts</h3>
+        <p>Stress is a normal part of life, but you don't have to face it alone. By understanding its causes and learning effective coping strategies, you can manage stress more effectively and maintain your mental health. Remember that seeking help is a sign of strength, not weakness.</p>
+      `,
+      author: 'Clinical Psychologist Dr. James Martinez',
+      category: 'Mental Health',
+      tags: ['mental health', 'stress management', 'teens', 'coping strategies'],
+      coverImage: 'Assets/mental_stress.jpg',
+      readTime: '8 min read',
+      createdAt: new Date('2026-03-06'),
+      views: 234,
+      likes: 45
+    },
+    {
+      id: 'finding-balance-teens',
+      title: 'Finding Balance: Managing School, Life, and Well-being',
+      excerpt: 'Balancing school, home, and social life is tough. This guide shares simple habits to reclaim calm and stay focused.',
+      content: `
+        <h2>Finding Balance: Managing School, Life, and Well-being</h2>
+        <p>As a teenager, juggling schoolwork, extracurricular activities, social life, family responsibilities, and personal well-being can feel overwhelming. Finding balance isn't about doing everything perfectly - it's about creating a sustainable lifestyle that supports your health and happiness.</p>
+        
+        <h3>The Challenge of Balance</h3>
+        <p>Modern teens face unprecedented demands:</p>
+        <ul>
+          <li>Heavy academic workloads and AP/IB courses</li>
+          <li>Extracurricular activities and leadership roles</li>
+          <li>Social media and online social life</li>
+          <li>Part-time jobs or internships</li>
+          <li>Family expectations and responsibilities</li>
+          <li>College preparation and standardized testing</li>
+        </ul>
+        
+        <h3>Signs You're Out of Balance</h3>
+        <ul>
+          <li>Constant fatigue or exhaustion</li>
+          <li>Declining grades despite effort</li>
+          <li>Neglecting personal relationships</li>
+          <li>Loss of interest in hobbies</li>
+          <li>Increased anxiety or irritability</li>
+          <li>Physical symptoms like headaches or stomach issues</li>
+          <li>Sleep deprivation or irregular sleep patterns</li>
+        </ul>
+        
+        <h3>Creating a Balanced Schedule</h3>
+        
+        <h4>1. Audit Your Time</h4>
+        <p>Track how you spend your time for a week:</p>
+        <ul>
+          <li>Note all activities, including screen time</li>
+          <li>Identify time wasters and inefficiencies</li>
+          <li>Find pockets of time for important activities</li>
+          <li>Calculate actual sleep and study hours</li>
+        </ul>
+        
+        <h4>2. Prioritize Ruthlessly</h4>
+        <ul>
+          <li><strong>Health First:</strong> Sleep, exercise, meals come before extra studying</li>
+          <li><strong>Academic Essentials:</strong> Core classes and immediate deadlines</li>
+          <li><strong>Quality over Quantity:</strong> Better to do fewer things well</li>
+          <li><strong>Say No:</strong> It's okay to decline non-essential commitments</li>
+        </ul>
+        
+        <h4>3. Design Your Ideal Week</h4>
+        <p>Structure your time intentionally:</p>
+        <ul>
+          <li><strong>Sleep:</strong> 8-10 hours per night (aim for consistency)</li>
+          <li><strong>Study Blocks:</strong> 45-60 minute focused sessions with breaks</li>
+          <li><strong>Exercise:</strong> 30-60 minutes most days</li>
+          <li><strong>Meals:</strong> Regular, balanced eating times</li>
+          <li><strong>Social Time:</strong> Quality time with friends and family</li>
+          <li><strong>Free Time:</strong> Unscheduled time for spontaneity</li>
+        </ul>
+        
+        <h3>Practical Balance Strategies</h3>
+        
+        <h4>Study Smarter, Not Harder</h4>
+        <ul>
+          <li>Use the Pomodoro Technique (25 minutes study, 5-minute break)</li>
+          <li>Create a dedicated study space free from distractions</li>
+          <li>Review material regularly instead of cramming</li>
+          <li>Start assignments early to avoid last-minute stress</li>
+        </ul>
+        
+        <h4>Digital Balance</h4>
+        <ul>
+          <li>Set screen time limits and stick to them</li>
+          <li>Designate phone-free zones (bedroom, study area)</li>
+          <li>Use apps to block distracting websites during study time</li>
+          <li>Schedule social media time rather than scrolling mindlessly</li>
+        </ul>
+        
+        <h4>Social Balance</h4>
+        <ul>
+          <li>Quality over quantity in friendships</li>
+          <li>Set boundaries with draining relationships</li>
+          <li>Schedule regular check-ins with close friends</li>
+          <li>Balance group activities with alone time</li>
+        </ul>
+        
+        <h4>Self-Care Essentials</h4>
+        <ul>
+          <li><strong>Sleep Hygiene:</strong> Consistent bedtime routine, no screens before bed</li>
+          <li><strong>Nutrition:</strong> Balanced meals, stay hydrated, limit caffeine</li>
+          <li><strong>Exercise:</strong> Find activities you enjoy, not just "working out"</li>
+          <li><strong>Mindfulness:</strong> Meditation, journaling, or quiet reflection</li>
+          <li><strong>Hobbies:</strong> Activities that bring joy and relaxation</li>
+        </ul>
+        
+        <h3>Dealing with Imbalance</h3>
+        
+        <h4>When You're Overwhelmed</h4>
+        <ul>
+          <li>Stop and breathe - use the 4-7-8 breathing technique</li>
+          <li>Write down everything causing stress</li>
+          <li>Prioritize the top 3 most important items</li>
+          <li>Let go of perfectionism - done is better than perfect</li>
+          <li>Ask for help from teachers, parents, or friends</li>
+        </ul>
+        
+        <h4>Weekly Reset</h4>
+        <ul>
+          <li>Review what worked and what didn't</li>
+          <li>Adjust your schedule based on real experiences</li>
+          <li>Celebrate small wins and progress</li>
+          <li>Plan for the upcoming week intentionally</li>
+        </ul>
+        
+        <h3>Long-term Perspective</h3>
+        <p>Balance is not static - it changes with life stages:</p>
+        <ul>
+          <li><strong>High School:</strong> Focus on building good habits and exploring interests</li>
+          <li><strong>College Prep:</strong> Balance academics with personal growth</li>
+          <li><strong>Future Planning:</strong> Consider work-life balance in career choices</li>
+        </ul>
+        
+        <h3>Getting Support</h3>
+        <p>Don't hesitate to seek help when needed:</p>
+        <ul>
+          <li>Talk to a school counselor about workload concerns</li>
+          <li>Discuss time management with teachers or parents</li>
+          <li>Consider professional help for anxiety or depression</li>
+          <li>Join study groups or balance-focused support communities</li>
+        </ul>
+        
+        <h3>Final Thoughts</h3>
+        <p>Finding balance is a skill that improves with practice. Be patient with yourself as you learn what works best for you. Remember that balance doesn't mean equal time in every area - it means allocating time in a way that supports your well-being and goals. Small, consistent changes lead to lasting balance.</p>
+      `,
+      author: 'Life Coach and Educator Lisa Chen',
+      category: 'Study Tips',
+      tags: ['balance', 'time management', 'well-being', 'stress relief'],
+      coverImage: 'Assets/Addiction_image.jpg',
+      readTime: '9 min read',
+      createdAt: new Date('2026-03-04'),
+      views: 198,
+      likes: 39
+    },
+    {
+      id: 'managing-job-stress',
+      title: 'Managing Job Stress: Finding Meaningful Work',
+      excerpt: 'Choose a job that matches your interests and skills so work feels more meaningful and less stressful.',
+      content: `
+        <h2>Managing Job Stress: Finding Meaningful Work</h2>
+        <p>Job stress affects millions of workers worldwide, but it doesn't have to be inevitable. By choosing careers that align with your interests, skills, and values, you can significantly reduce workplace stress and increase job satisfaction.</p>
+        
+        <h3>Understanding Job Stress</h3>
+        <p>Job stress occurs when work demands exceed your ability to cope. Common sources include:</p>
+        <ul>
+          <li>Work overload and unrealistic deadlines</li>
+          <li>Lack of control over work processes</li>
+          <li>Unclear job expectations</li>
+          <li>Poor work relationships</li>
+          <li>Work-life imbalance</li>
+          <li>Lack of recognition or growth opportunities</li>
+          <li>Job insecurity or organizational changes</li>
+        </ul>
+        
+        <h3>The Cost of Job Stress</h3>
+        <ul>
+          <li><strong>Physical Health:</strong> Headaches, fatigue, weakened immune system</li>
+          <li><strong>Mental Health:</strong> Anxiety, depression, burnout</li>
+          <li><strong>Productivity:</strong> Reduced focus, lower quality work</li>
+          <li><strong>Relationships:</strong> Strained personal and professional relationships</li>
+          <li><strong>Life Satisfaction:</strong> Decreased overall happiness and well-being</li>
+        </ul>
+        
+        <h3>Finding Work That Fits</h3>
+        
+        <h4>Self-Assessment</h4>
+        <p>Before choosing a career, understand yourself:</p>
+        <ul>
+          <li><strong>Interests:</strong> What activities energize you?</li>
+          <li><strong>Skills:</strong> What are you naturally good at?</li>
+          <li><strong>Values:</strong> What matters most to you (helping others, creativity, stability)?</li>
+          <li><strong>Personality:</strong> Are you introverted/extroverted, analytical/creative?</li>
+          <li><strong>Work Style:</strong> Do you prefer structure or flexibility?</li>
+        </ul>
+        
+        <h4>Career Exploration</h4>
+        <ul>
+          <li><strong>Research Careers:</strong> Use O*NET, Bureau of Labor Statistics, LinkedIn</li>
+          <li><strong>Informational Interviews:</strong> Talk to people in fields you're interested in</li>
+          <li><strong>Job Shadowing:</strong> Spend time observing different jobs</li>
+          <li><strong>Internships/Try Jobs:</strong> Gain hands-on experience</li>
+          <li><strong>Career Assessments:</strong> Take personality and career tests</li>
+        </ul>
+        
+        <h3>Reducing Workplace Stress</h3>
+        
+        <h4>At the Individual Level</h4>
+        <ul>
+          <li><strong>Time Management:</strong> Prioritize tasks, set boundaries, avoid overtime</li>
+          <li><strong>Skill Development:</strong> Build capabilities to handle challenges</li>
+          <li><strong>Stress Management:</strong> Exercise, meditation, hobbies</li>
+          <li><strong>Work-Life Balance:</strong> Protect personal time, unplug after hours</li>
+          <li><strong>Support Network:</strong> Build relationships with colleagues and mentors</li>
+        </ul>
+        
+        <h4>At the Organizational Level</h4>
+        <ul>
+          <li><strong>Clear Communication:</strong> Understand expectations and provide feedback</li>
+          <li><strong>Workload Management:</strong> Negotiate realistic deadlines</li>
+          <li><strong>Professional Development:</strong> Seek growth opportunities</li>
+          <li><strong>Work Environment:</strong> Advocate for positive workplace changes</li>
+        </ul>
+        
+        <h3>Career Transitions</h3>
+        <p>If your current job doesn't fit:</p>
+        <ul>
+          <li><strong>Assess Your Situation:</strong> Identify what's causing stress</li>
+          <li><strong>Explore Options:</strong> Research alternative careers or roles</li>
+          <li><strong>Skill Building:</strong> Identify gaps and create a development plan</li>
+          <li><strong>Networking:</strong> Connect with people in your target field</li>
+          <li><strong>Gradual Transition:</strong> Consider lateral moves or part-time exploration</li>
+        </ul>
+        
+        <h3>Building Career Resilience</h3>
+        <ul>
+          <li><strong>Growth Mindset:</strong> View challenges as learning opportunities</li>
+          <li><strong>Emotional Intelligence:</strong> Manage emotions and build relationships</li>
+          <li><strong>Adaptability:</strong> Embrace change and learn new skills</li>
+          <li><strong>Self-Care:</strong> Maintain physical and mental health</li>
+          <li><strong>Continuous Learning:</strong> Stay current in your field</li>
+        </ul>
+        
+        <h3>Workplace Rights and Resources</h3>
+        <ul>
+          <li><strong>Labor Laws:</strong> Know your rights regarding working conditions</li>
+          <li><strong>Employee Assistance Programs:</strong> Many companies offer counseling</li>
+          <li><strong>Professional Organizations:</strong> Join industry groups for support</li>
+          <li><strong>Mental Health Resources:</strong> Access therapy or support groups</li>
+        </ul>
+        
+        <h3>Long-term Career Planning</h3>
+        <p>Think beyond immediate job satisfaction:</p>
+        <ul>
+          <li><strong>Work-Life Integration:</strong> How will this job fit your life goals?</li>
+          <li><strong>Growth Potential:</strong> Are there advancement opportunities?</li>
+          <li><strong>Work Culture:</strong> Does the environment align with your values?</li>
+          <li><strong>Financial Stability:</strong> Can this career support your needs?</li>
+          <li><strong>Legacy:</strong> Will this work give you a sense of purpose?</li>
+        </ul>
+        
+        <h3>When to Seek Help</h3>
+        <p>If job stress is severely impacting your health:</p>
+        <ul>
+          <li>Consider speaking with HR or a supervisor</li>
+          <li>Consult a career counselor</li>
+          <li>Seek professional mental health support</li>
+          <li>Explore disability accommodations if applicable</li>
+        </ul>
+        
+        <h3>Final Thoughts</h3>
+        <p>Finding meaningful work that aligns with your interests and skills is one of the most important steps you can take for long-term well-being. While no job is perfect, choosing work that fits who you are significantly reduces stress and increases satisfaction. Remember that career exploration is an ongoing process - your needs and interests may evolve over time.</p>
+      `,
+      author: 'Career Development Director Tom Anderson',
+      category: 'Career Guidance',
+      tags: ['job stress', 'career planning', 'work-life balance', 'job satisfaction'],
+      coverImage: 'Assets/job_stress.jpg',
+      readTime: '10 min read',
+      createdAt: new Date('2026-03-02'),
+      views: 267,
+      likes: 52
+    },
+    {
+      id: 'finding-joy-work',
+      title: 'Finding Joy at Work: Turning Your Job into a Source of Happiness',
+      excerpt: 'Work doesn\'t have to feel like a burden. Learn how to find opportunities that make you excited to show up each day.',
+      content: `
+        <h2>Finding Joy at Work: Turning Your Job into a Source of Happiness</h2>
+        <p>Many people spend more time at work than anywhere else, yet job satisfaction remains elusive for millions. The good news is that you can find joy and meaning in your work, regardless of your current role or industry.</p>
+        
+        <h3>The Reality of Work Dissatisfaction</h3>
+        <p>Studies show that most workers are disengaged:</p>
+        <ul>
+          <li>Only 30% of workers are engaged and enthusiastic about their jobs</li>
+          <li>50% are disengaged and just going through the motions</li>
+          <li>20% are actively disengaged and unhappy</li>
+        </ul>
+        <p>This leads to decreased productivity, higher turnover, and personal unhappiness.</p>
+        
+        <h3>Redefining Work Success</h3>
+        <p>Traditional measures of success (salary, title, prestige) don't guarantee happiness. True work joy comes from:</p>
+        <ul>
+          <li><strong>Purpose:</strong> Feeling your work matters</li>
+          <li><strong>Autonomy:</strong> Having control over how you work</li>
+          <li><strong>Mastery:</strong> Getting better at meaningful tasks</li>
+          <li><strong>Connection:</strong> Positive relationships with colleagues</li>
+          <li><strong>Growth:</strong> Learning and developing new skills</li>
+        </ul>
+        
+        <h3>Finding Joy in Your Current Role</h3>
+        
+        <h4>Reframe Your Perspective</h4>
+        <ul>
+          <li><strong>Focus on Impact:</strong> How does your work help others or contribute to something larger?</li>
+          <li><strong>Celebrate Small Wins:</strong> Acknowledge accomplishments, no matter how small</li>
+          <li><strong>Find Meaning:</strong> Connect your tasks to your personal values</li>
+          <li><strong>Practice Gratitude:</strong> Regularly note what's going well</li>
+        </ul>
+        
+        <h4>Build Positive Relationships</h4>
+        <ul>
+          <li><strong>Connect with Colleagues:</strong> Build genuine relationships beyond work tasks</li>
+          <li><strong>Find a Work Buddy:</strong> Someone you can vent to and celebrate with</li>
+          <li><strong>Mentor Others:</strong> Teaching others often brings joy and purpose</li>
+          <li><strong>Seek Support:</strong> Don't suffer in silence - talk about challenges</li>
+        </ul>
+        
+        <h4>Optimize Your Environment</h4>
+        <ul>
+          <li><strong>Personalize Your Space:</strong> Add plants, photos, or items that make you happy</li>
+          <li><strong>Take Breaks:</strong> Step away regularly to recharge</li>
+          <li><strong>Healthy Boundaries:</strong> Protect your personal time</li>
+          <li><strong>Work-Life Integration:</strong> Find ways to bring joy from home to work</li>
+        </ul>
+        
+        <h3>Developing Work Joy Habits</h3>
+        
+        <h4>Morning Rituals</h4>
+        <ul>
+          <li>Start your day with intention and gratitude</li>
+          <li>Listen to uplifting music or podcasts on your commute</li>
+          <li>Practice positive visualization about your workday</li>
+          <li>Set one or two priorities for the day</li>
+        </ul>
+        
+        <h4>During the Workday</h4>
+        <ul>
+          <li><strong>Mindful Moments:</strong> Take 1-minute breathing breaks</li>
+          <li><strong>Task Variety:</strong> Alternate between different types of tasks</li>
+          <li><strong>Learning Time:</strong> Dedicate time to skill development</li>
+          <li><strong>Social Interactions:</strong> Schedule positive interactions</li>
+        </ul>
+        
+        <h4>End-of-Day Routines</h4>
+        <ul>
+          <li>Review accomplishments and lessons learned</li>
+          <li>Disconnect from work communications</li>
+          <li>Plan something enjoyable for after work</li>
+          <li>Practice work-life boundary rituals</li>
+        </ul>
+        
+        <h3>Cultivating Flow and Engagement</h3>
+        <p>Flow is the state of complete immersion and joy in an activity:</p>
+        <ul>
+          <li><strong>Clear Goals:</strong> Know what you're working toward</li>
+          <li><strong>Immediate Feedback:</strong> Get quick information about your progress</li>
+          <li><strong>Balance Challenge and Skill:</strong> Tasks should be challenging but achievable</li>
+          <li><strong>Deep Focus:</strong> Minimize distractions during important work</li>
+        </ul>
+        
+        <h3>Long-term Career Joy</h3>
+        
+        <h4>Career Crafting</h4>
+        <p>Shape your job to better fit your strengths and interests:</p>
+        <ul>
+          <li><strong>Job Crafting:</strong> Modify your current role to include more preferred tasks</li>
+          <li><strong>Skill Development:</strong> Learn new skills that make work more enjoyable</li>
+          <li><strong>Relationship Building:</strong> Cultivate positive work relationships</li>
+          <li><strong>Meaning Making:</strong> Connect your work to a larger purpose</li>
+        </ul>
+        
+        <h4>Career Exploration</h4>
+        <ul>
+          <li><strong>Side Projects:</strong> Explore interests outside your main job</li>
+          <li><strong>Networking:</strong> Connect with people in fields that excite you</li>
+          <li><strong>Informational Interviews:</strong> Learn about other careers</li>
+          <li><strong>Volunteering:</strong> Try work in different fields</li>
+        </ul>
+        
+        <h3>Overcoming Joy Blockers</h3>
+        
+        <h4>Toxic Work Environments</h4>
+        <ul>
+          <li>Document issues and consider speaking with HR</li>
+          <li>Build external support networks</li>
+          <li>Focus on what you can control</li>
+          <li>Plan your exit strategy if needed</li>
+        </ul>
+        
+        <h4>Internal Barriers</h4>
+        <ul>
+          <li><strong>Perfectionism:</strong> Accept "good enough" work</li>
+          <li><strong>Comparison:</strong> Focus on your own growth journey</li>
+          <li><strong>Entitlement:</strong> Work joy requires effort and mindset shifts</li>
+          <li><strong>Fear of Change:</strong> Small changes can create big improvements</li>
+        </ul>
+        
+        <h3>Measuring Work Joy</h3>
+        <p>Track your progress with these indicators:</p>
+        <ul>
+          <li>Energy levels at the end of the workday</li>
+          <li>Excitement about upcoming work tasks</li>
+          <li>Quality of work relationships</li>
+          <li>Sense of accomplishment and growth</li>
+          <li>Work-life balance satisfaction</li>
+        </ul>
+        
+        <h3>Final Thoughts</h3>
+        <p>Work joy is not a destination but a journey of continuous discovery and adjustment. It requires intentional effort, but the rewards - increased happiness, better health, and greater life satisfaction - are worth it. Start small today: identify one thing that could make work more enjoyable and take action. Your future self will thank you.</p>
+      `,
+      author: 'Workplace Happiness Researcher Dr. Emily Watson',
+      category: 'Career Guidance',
+      tags: ['work joy', 'job satisfaction', 'workplace happiness', 'career fulfillment'],
+      coverImage: 'Assets/happiness_dimension.jpg',
+      readTime: '11 min read',
+      createdAt: new Date('2026-02-28'),
+      views: 312,
+      likes: 67
     }
   ];
 
@@ -345,8 +1099,18 @@ class BlogManager {
       return articles;
     } catch (error) {
       console.error('Error fetching articles:', error);
-      throw error;
+      // Fallback to sample articles if Firebase fails
+      let filteredArticles = this.SAMPLE_ARTICLES;
+      if (category) {
+        filteredArticles = filteredArticles.filter(article => article.category === category);
+      }
+      return filteredArticles.slice(0, limit);
     }
+  }
+
+  // Alias for backward compatibility
+  static async getAllBlogPosts(limit = 10) {
+    return this.getArticles(null, limit);
   }
 
   // Get single article by ID
@@ -363,8 +1127,14 @@ class BlogManager {
       return null;
     } catch (error) {
       console.error('Error fetching article:', error);
-      throw error;
+      // Fallback to sample articles
+      return this.SAMPLE_ARTICLES.find(article => article.id === articleId) || null;
     }
+  }
+
+  // Alias for backward compatibility
+  static async getBlogPost(articleId) {
+    return this.getArticle(articleId);
   }
 
   // Increment article views

@@ -7,23 +7,35 @@ class DatabaseManager {
   // ============ ASSESSMENT OPERATIONS ============
   
   // Save assessment results
-  static saveAssessmentResults(userId, assessmentData) {
-    return window.db.collection('users').doc(userId).update({
-      assessmentResults: firebase.firestore.FieldValue.arrayUnion({
-        type: assessmentData.type,
-        score: assessmentData.score,
-        personalityType: assessmentData.personalityType || '',
-        strengths: assessmentData.strengths || [],
-        weaknesses: assessmentData.weaknesses || [],
-        recommendedCareers: assessmentData.recommendedCareers || [],
-        completedDate: new Date(),
-        details: assessmentData.details || {}
-      })
-    })
-    .catch(error => {
+  static async saveAssessmentResults(userId, assessmentData) {
+    const userRef = window.db.collection('users').doc(userId);
+    const resultEntry = {
+      type: assessmentData.type,
+      score: assessmentData.score,
+      personalityType: assessmentData.personalityType || '',
+      strengths: assessmentData.strengths || [],
+      weaknesses: assessmentData.weaknesses || [],
+      recommendedCareers: assessmentData.recommendedCareers || [],
+      completedDate: new Date(),
+      details: assessmentData.details || {}
+    };
+
+    try {
+      const doc = await userRef.get();
+      if (!doc.exists) {
+        // Create user document if it doesn't exist yet
+        await userRef.set({
+          assessmentResults: [resultEntry]
+        }, { merge: true });
+      } else {
+        await userRef.update({
+          assessmentResults: firebase.firestore.FieldValue.arrayUnion(resultEntry)
+        });
+      }
+    } catch (error) {
       console.error('Error saving assessment:', error.message);
       throw error;
-    });
+    }
   }
 
   // Get user's assessment results
